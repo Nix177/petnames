@@ -1,3 +1,0 @@
-# insérer code : ads.txt (AdSense)
-google.com, pub-9411950027978678, DIRECT, f08c47fec0942fa0
-# /insérer code
