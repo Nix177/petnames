@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://nix177.github.io/petnames/fr/</loc></url>
-<url><loc>https://nix177.github.io/petnames/en/</loc></url>
-<url><loc>https://nix177.github.io/petnames/de/</loc></url>
-<url><loc>https://nix177.github.io/petnames/es/</loc></url>
-<url><loc>https://nix177.github.io/petnames/zh/</loc></url>
-<url><loc>https://nix177.github.io/petnames/hi/</loc></url>
-<url><loc>https://nix177.github.io/petnames/ar/</loc></url>
-<url><loc>https://nix177.github.io/petnames/bn/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/fr/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/en/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/de/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/es/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/zh/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/hi/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/ar/</loc></url>
+  <url><loc>https://nix177.github.io/petnames/bn/</loc></url>
 </urlset>
