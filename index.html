@@ -1,67 +1,41 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Petnames — redirect</title>
-  <meta name="robots" content="noindex,follow" />
-  
-  <!-- Page de REDIRECTION pour le repo de projet (petnames)
-       Placez ce fichier à la RACINE du repo Nix177/petnames
-       Il redirige l’utilisateur vers le sous-dossier de langue le plus pertinent.
-       Aucun script pub/CMP ici (page neutre + noindex). -->
+<!-- insérer code : switcher de langue (naviguer par dossier) -->
+<script>
+// Langues supportées
+const SUPPORTED_LANGS = ["fr","en","de","es","zh","hi","ar","bn"];
 
-  <script>
-    // insérer code : config de secours
-    // Changez la langue par défaut si vous préférez autre chose que 'fr'
-    var DEFAULT_LANG = 'fr';
-    // /insérer code
+// Retourne la racine du projet (ex: "/petnames/")
+function projectRoot(){
+  const parts = location.pathname.split("/");
+  if(parts[parts.length-1] === "") parts.pop();            // enlève segment vide final
+  const last = (parts[parts.length-1] || "").toLowerCase();
+  if (SUPPORTED_LANGS.includes(last)) parts.pop();           // enlève le code langue s'il est présent
+  let root = parts.join("/");
+  if(root === "") root = "/";                              // sécurité
+  if(!root.endsWith("/")) root += "/";
+  return root;                                               // ex: "/petnames/"
+}
 
-    (function(){
-      var map = {
-        fr: 'fr',
-        en: 'en',
-        de: 'de',
-        es: 'es',
-        zh: 'zh', 'zh-cn': 'zh', 'zh-hans': 'zh', 'zh-hant': 'zh', 'zh-tw':'zh', 'zh-hk':'zh',
-        hi: 'hi',
-        ar: 'ar',
-        bn: 'bn'
-      };
+// Construit l'URL cible pour une langue donnée et conserve quelques paramètres utiles
+function buildLangUrl(nextLang){
+  if(!SUPPORTED_LANGS.includes(nextLang)) nextLang = "en";  // fallback
+  const keepKeys = ["species","age","sex","styles","traits"]; // conserve votre config si présente
+  const src = new URLSearchParams(location.search);
+  const kept = new URLSearchParams();
+  keepKeys.forEach(k=>{ if(src.has(k)) kept.set(k, src.get(k)); });
+  const qs = kept.toString();
+  return projectRoot() + nextLang + "/" + (qs? ("?"+qs) : "");
+}
 
-      function pickLang(){
-        var langs = [];
-        try{
-          if (navigator.languages && navigator.languages.length) langs = navigator.languages;
-          else if (navigator.language) langs = [navigator.language];
-        }catch(_){}
-        langs = (langs||[]).map(function(l){ return String(l||'').toLowerCase(); });
-        for (var i=0;i<langs.length;i++){
-          var l = langs[i];
-          if (map[l]) return map[l];
-          var base = l.split('-')[0];
-          if (map[base]) return map[base];
-        }
-        return DEFAULT_LANG;
-      }
+// Branche automatiquement le <select> langue existant
+function setupLangSwitcher(){
+  const sel = document.querySelector("#lang, #language, select[name='lang']");
+  if(!sel) return;
+  sel.addEventListener("change", (e)=>{
+    const url = buildLangUrl(String(e.target.value).toLowerCase());
+    location.href = url; // on navigue vers le bon dossier, pas de ?lang= dans l'URL
+  });
+}
 
-      var dest = pickLang();
-      // Construit l'URL cible en gardant le chemin du repo (ex: /petnames/)
-      var basePath = location.pathname.replace(/index\.html$/i,'');
-      if (!/\/$/.test(basePath)) basePath += '/';
-      var target = basePath + dest + '/';
-
-      // Redirection immédiate (remplace l'historique)
-      location.replace(target);
-    })();
-  </script>
-  
-  <noscript>
-    <!-- Fallback sans JS -->
-    <meta http-equiv="refresh" content="0; url=./fr/" />
-  </noscript>
-</head>
-<body>
-  <p>Redirecting… If you are not redirected, <a href="./fr/">click here</a>.</p>
-</body>
-</html>
+document.addEventListener("DOMContentLoaded", setupLangSwitcher);
+</script>
+<!-- /insérer code -->
