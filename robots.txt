@@ -1,0 +1,7 @@
+<!-- insérer code : robots.txt (petnames) -->
+User-agent: *
+Allow: /
+
+
+Sitemap: https://nix177.github.io/petnames/sitemap.xml
+<!-- /insérer code -->
