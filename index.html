@@ -1,41 +1,87 @@
-<!-- insérer code : switcher de langue (naviguer par dossier) -->
-<script>
-// Langues supportées
-const SUPPORTED_LANGS = ["fr","en","de","es","zh","hi","ar","bn"];
+<!-- =============================================
+ index.html (RACINE DU PROJET)  ex: /petnames/index.html
+ Redirect détecte la langue et envoie vers /petnames/<lang>/
+ Page neutre: pas d'ads, pas de CMP. noindex,follow.
+============================================== -->
+<!-- insérer code : /petnames/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirecting…</title>
+  <meta name="robots" content="noindex,follow" />
+  <style>html{background:#0b1020;color:#e6ecff;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif}body{margin:40px auto;max-width:680px;line-height:1.5}</style>
+  <script>
+  // --- config ---
+  var DEFAULT_LANG = 'en'; // changeable: 'fr', 'en', etc.
+  var MAP = {
+    fr:'fr', en:'en', de:'de', es:'es', zh:'zh', hi:'hi', ar:'ar', bn:'bn',
+    'zh-cn':'zh','zh-hans':'zh','zh-hant':'zh','zh-tw':'zh','zh-hk':'zh'
+  };
+  var SUPPORTED = ['fr','en','de','es','zh','hi','ar','bn'];
 
-// Retourne la racine du projet (ex: "/petnames/")
-function projectRoot(){
-  const parts = location.pathname.split("/");
-  if(parts[parts.length-1] === "") parts.pop();            // enlève segment vide final
-  const last = (parts[parts.length-1] || "").toLowerCase();
-  if (SUPPORTED_LANGS.includes(last)) parts.pop();           // enlève le code langue s'il est présent
-  let root = parts.join("/");
-  if(root === "") root = "/";                              // sécurité
-  if(!root.endsWith("/")) root += "/";
-  return root;                                               // ex: "/petnames/"
-}
+  function pickLang(){
+    var list=[]; try{
+      if(navigator.languages&&navigator.languages.length) list = navigator.languages;
+      else if(navigator.language) list=[navigator.language];
+    }catch(_){}
+    list = (list||[]).map(function(l){return String(l||'').toLowerCase();});
+    for(var i=0;i<list.length;i++){
+      var l=list[i]; if(MAP[l]) return MAP[l]; var base=l.split('-')[0]; if(MAP[base]) return MAP[base];
+    }
+    return DEFAULT_LANG;
+  }
 
-// Construit l'URL cible pour une langue donnée et conserve quelques paramètres utiles
-function buildLangUrl(nextLang){
-  if(!SUPPORTED_LANGS.includes(nextLang)) nextLang = "en";  // fallback
-  const keepKeys = ["species","age","sex","styles","traits"]; // conserve votre config si présente
-  const src = new URLSearchParams(location.search);
-  const kept = new URLSearchParams();
-  keepKeys.forEach(k=>{ if(src.has(k)) kept.set(k, src.get(k)); });
-  const qs = kept.toString();
-  return projectRoot() + nextLang + "/" + (qs? ("?"+qs) : "");
-}
+  function repoRoot(){
+    var parts = location.pathname.split('/').filter(Boolean); // ex: ["petnames"]
+    if(parts.length && /\.html?$/.test(parts[parts.length-1])) parts.pop();
+    if(parts.length && SUPPORTED.indexOf((parts[parts.length-1]||'').toLowerCase())>=0) parts.pop();
+    var root = '/' + parts.join('/') + '/';
+    return root.replace(/\/+/g,'/');
+  }
 
-// Branche automatiquement le <select> langue existant
-function setupLangSwitcher(){
-  const sel = document.querySelector("#lang, #language, select[name='lang']");
-  if(!sel) return;
-  sel.addEventListener("change", (e)=>{
-    const url = buildLangUrl(String(e.target.value).toLowerCase());
-    location.href = url; // on navigue vers le bon dossier, pas de ?lang= dans l'URL
-  });
-}
+  (function(){
+    var lang = pickLang();
+    var target = repoRoot() + lang + '/';
+    // Redirection immédiate (remplace l'historique)
+    location.replace(target);
+  })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=./en/" /></noscript>
+</head>
+<body>
+  Redirecting to your language… If not redirected, <a href="./en/">click here</a>.
+</body>
+</html>
+<!-- /insérer code -->
 
-document.addEventListener("DOMContentLoaded", setupLangSwitcher);
-</script>
+
+<!-- =============================================
+ index.html (RACINE DU DOMAINE/ORG)  ex: /index.html de nix177.github.io
+ Version simple: redirige vers le projet /petnames/ (puis la page ci-dessus gère la langue)
+============================================== -->
+<!-- insérer code : /index.html (domaine → projet) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirecting…</title>
+  <meta name="robots" content="noindex,follow" />
+  <script>
+    // Chemin du projet hébergé (avec slash final)
+    var DEST_PROJECT = '/petnames/';
+    (function(){
+      var url = DEST_PROJECT;
+      if(!/^\//.test(url)) url = '/' + url; // sécurité
+      location.replace(url);
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=/petnames/" /></noscript>
+</head>
+<body>
+  Redirecting to the app… If not redirected, <a href="/petnames/">open the app</a>.
+</body>
+</html>
 <!-- /insérer code -->
