@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <!-- insérer code : Consent Mode v2 (par défaut, EEA/UK/CH) -->
   <script>
@@ -22,7 +22,7 @@
   <!-- /insérer code -->
 
   <!-- insérer code : Google CMP (Funding Choices) -->
-  <!-- ⚠️ COLLE ICI le snippet EXACT que Google te fournit (2 <script>) -->
+  <!-- ⚠️ COLLE ICI le snippet EXACT (2 <script>) fourni par Google (pour pub-9411950027978678) -->
   <!-- /insérer code -->
 
   <!-- insérer code : AdSense global (Auto ads) -->
@@ -35,11 +35,10 @@
   <meta id="metaDesc" name="description" content="A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in-browser." />
   <meta name="theme-color" content="#0f172a" />
 
-  <!-- insérer code : canonical (URL exacte de CETTE page) -->
+  <!-- canonical -->
   <link rel="canonical" href="https://nix177.github.io/petnames/en/" />
-  <!-- /insérer code -->
 
-  <!-- insérer code : HREFLANG pour toutes les langues (Project site) -->
+  <!-- HREFLANG (toutes langues) -->
   <link rel="alternate" href="https://nix177.github.io/petnames/" hreflang="x-default" />
   <link rel="alternate" href="https://nix177.github.io/petnames/fr/" hreflang="fr" />
   <link rel="alternate" href="https://nix177.github.io/petnames/en/" hreflang="en" />
@@ -49,18 +48,16 @@
   <link rel="alternate" href="https://nix177.github.io/petnames/hi/" hreflang="hi" />
   <link rel="alternate" href="https://nix177.github.io/petnames/ar/" hreflang="ar" />
   <link rel="alternate" href="https://nix177.github.io/petnames/bn/" hreflang="bn" />
-  <!-- /insérer code -->
 
-  <!-- insérer code : forcer la langue de cette page (évite une langue mémorisée différente) -->
+  <!-- forcer la langue de CETTE page -->
   <script>
     (function(){
       var THIS_LANG = 'en';
       try{ localStorage.setItem('petname.lang', THIS_LANG); }catch{}
       document.documentElement.lang = THIS_LANG;
-      document.documentElement.dir = (['ar'].includes(THIS_LANG) ? 'rtl' : 'ltr');
+      document.documentElement.dir  = 'ltr';
     })();
   </script>
-  <!-- /insérer code -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,26 +66,26 @@
     :root{ --bg:#0b1020; --panel:#121a2e; --muted:#aab2c8; --text:#e6ecff; --accent:#76e0c2; --accent-2:#9fb6ff; --ring:rgba(118,224,194,.5); --danger:#ff7a7a }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#0a0f20, #0b1226 35%, #0a0f20);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    body{margin:0;background:linear-gradient(180deg,#0a0f20,#0b1226 35%,#0a0f20);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
     a{color:var(--accent-2)}
     .wrap{max-width:980px;margin-inline:auto;padding:24px}
     header{display:flex;align-items:center;gap:16px;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 140deg, #76e0c2, #9fb6ff, #76e0c2); box-shadow:0 0 0 2px rgba(255,255,255,.06) inset, 0 10px 30px rgba(0,0,0,.35)}
+    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 140deg,#76e0c2,#9fb6ff,#76e0c2);box-shadow:0 0 0 2px rgba(255,255,255,.06) inset,0 10px 30px rgba(0,0,0,.35)}
     h1{font-size:clamp(20px,3.5vw,28px);margin:0;font-weight:700;letter-spacing:.2px}
     .tag{font-size:12px;color:#c6d2ff;background:#0f1830;border:1px solid rgba(255,255,255,.08);padding:4px 8px;border-radius:999px}
     .langpick{display:flex;align-items:center;gap:8px}
     .langpick select{background:#0f1830;border:1px solid rgba(255,255,255,.12);color:var(--text);border-radius:10px;padding:8px}
     main{margin-top:20px;display:grid;grid-template-columns:1.05fr 1fr;gap:20px}
     @media (max-width:970px){main{grid-template-columns:1fr}}
-    .panel{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.0)); border:1px solid rgba(255,255,255,.08); border-radius:20px; box-shadow:0 15px 40px rgba(0,0,0,.35)}
+    .panel{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,.35)}
     .pad{padding:18px}
     .controls{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .controls .col-span-2{grid-column:span 2}
     @media (max-width:620px){.controls{grid-template-columns:1fr}.controls .col-span-2{grid-column:auto}}
     label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
     select,input[type="number"],input[type="text"],.chips,.filedrop{width:100%;background:#0f1830;border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--text);padding:12px 12px;outline:none}
-    select:focus,input:focus,.filedrop:focus-within{border-color:var(--accent); box-shadow:0 0 0 4px var(--ring)}
+    select:focus,input:focus,.filedrop:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px var(--ring)}
     .row{display:flex;gap:10px}
     .chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px}
     .chip{background:#0d1530;border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:999px;font-size:12px;cursor:pointer;user-select:none}
@@ -100,7 +97,7 @@
     .filedrop img{max-width:100%;max-height:100%;display:block}
     .hint{font-size:12px;color:#93a0c5;margin-top:6px}
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btn{background:linear-gradient(180deg,#1d2a53,#172348); border:1px solid rgba(255,255,255,.12);padding:12px 14px;border-radius:12px;color:var(--text);font-weight:600;cursor:pointer}
+    .btn{background:linear-gradient(180deg,#1d2a53,#172348);border:1px solid rgba(255,255,255,.12);padding:12px 14px;border-radius:12px;color:var(--text);font-weight:600;cursor:pointer}
     .btn.primary{background:linear-gradient(180deg,#2a3f8f,#253772);border-color:#6fb4ff}
     .btn.ghost{background:transparent;border-color:rgba(255,255,255,.14)}
     .results{padding:18px}
@@ -116,9 +113,12 @@
     .fav{background:#0d1530;border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:999px;font-size:12px}
     footer{margin-top:26px;font-size:12px;color:#8ea0d2;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
     .small{font-size:12px;color:#90a0c7}
-    .ad{background:repeating-linear-gradient(45deg, rgba(255,255,255,.06), rgba(255,255,255,.06) 10px, rgba(255,255,255,.03) 10px, rgba(255,255,255,.03) 20px); border:1px dashed rgba(255,255,255,.2); border-radius:14px; color:#bfc8df; display:grid; place-items:center; height:90px; font-size:12px}
+    .ad{background:repeating-linear-gradient(45deg,rgba(255,255,255,.06),rgba(255,255,255,.06) 10px,rgba(255,255,255,.03) 10px,rgba(255,255,255,.03) 20px);border:1px dashed rgba(255,255,255,.2);border-radius:14px;color:#bfc8df;display:grid;place-items:center;height:90px;font-size:12px}
     .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111b32;border:1px solid rgba(255,255,255,.14);color:#fff;padding:10px 14px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .25s ease}
     .toast.show{opacity:1}
+    /* Banner d’info IA */
+    .banner{display:none;margin:10px 0;padding:10px;border-radius:10px;background:#0e1835;border:1px solid rgba(255,255,255,.15);font-size:12px}
+    .banner.show{display:block}
   </style>
 </head>
 <body>
@@ -136,19 +136,19 @@
         <label for="lang" class="small" id="labelLang">Language</label>
         <select id="lang" aria-label="Choose language">
           <option value="fr">FR</option>
-          <option value="en">EN</option>
+          <option value="en" selected>EN</option>
           <option value="de">DE</option>
           <option value="es">ES</option>
           <option value="zh">中文</option>
           <option value="hi">HI</option>
-          <option value="ar" selected>AR</option>
+          <option value="ar">AR</option>
           <option value="bn">BN</option>
         </select>
       </div>
 
       <div style="min-width:180px;flex:0 0 180px">
         <div style="margin-top:18px">
-          <!-- insérer code : bloc pub dans l’en-tête (remplace data-ad-slot) -->
+          <!-- insérer code : bloc pub en-tête (remplace data-ad-slot) -->
           <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-9411950027978678"
@@ -220,6 +220,7 @@
               <div class="chip" data-trait="sage" id="chip-trait-sage">Wise</div>
             </div>
           </div>
+
           <div class="col-span-2">
             <label id="labelPhoto">Pet photo (optional)</label>
             <div class="filedrop" id="filedrop">
@@ -229,11 +230,13 @@
                   <strong id="photoDrop">Drop an image here</strong> <span id="photoOr">or</span> <label for="file" id="photoClick" style="text-decoration:underline;cursor:pointer">click to choose</label>
                   <input id="file" type="file" accept="image/*" />
                   <div class="hint" id="photoHint">The image is not uploaded — it stays on your device. Dominant colors help refine ideas.</div>
+                  <div id="aiBanner" class="banner">This image may be sent to our AI backend to improve name ideas. <button id="aiAllow" class="btn" style="padding:6px 10px;margin-left:8px">Allow once</button> <button id="aiAlways" class="btn ghost" style="padding:6px 10px;margin-left:6px">Always allow</button> <button id="aiDeny" class="btn ghost" style="padding:6px 10px;margin-left:6px">Don’t send</button></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <div class="actions">
           <button class="btn primary" id="generate">Generate names</button>
           <button class="btn ghost" id="randomize">Randomize</button>
@@ -247,7 +250,7 @@
         <div style="margin-top:14px" class="small" id="favoritesTitle">Favorites</div>
         <div class="favorites" id="favorites"></div>
         <div style="margin-top:18px">
-          <!-- insérer code : bloc pub sous les résultats (remplace data-ad-slot) -->
+          <!-- insérer code : bloc pub sous résultats (remplace data-ad-slot) -->
           <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-9411950027978678"
@@ -262,108 +265,352 @@
 
     <footer>
       <div id="footerLeft">© <span id="year"></span> — Tiny static app. Images stay local. <a href="#" id="exportFavs">Export favorites</a></div>
-      <div>
-        <a href="#" id="share">Share this setup</a>
-      </div>
+      <div><a href="#" id="share">Share this setup</a></div>
     </footer>
   </div>
 
   <div class="toast" id="toast">Copied ✔</div>
 
   <script>
-    // i18n minimal (EN, FR) — fallback EN si langue inconnue
-   const I18N = {
-  en:{dir:'ltr',metaTitle:'Pet names — tailored',metaDesc:'A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in-browser.',appTitle:'Pet names — tailored',appTag:'Generates ideas based on species, age, and photo (optional)',labelLang:'Language',labelSpecies:'Species',species:{chien:'🐶 Dog',chat:'🐱 Cat',oiseau:'🐦 Bird',lapin:'🐰 Rabbit',cheval:'🐴 Horse',reptile:'🦎 Reptile',rongeur:'🐭 Rodent',poisson:'🐟 Fish',autre:'✨ Other'},labelAge:'Age',agePlaceholder:'e.g. 2',unitYears:'years',unitMonths:'months',labelSex:'Sex (optional)',sex:{inconnu:'Unknown',femelle:'Female','mâle':'Male'},labelStyles:'Name style (optional)',styles:{mignon:'Cute',classique:'Classic',nature:'Nature',mythologique:'Mythologic',fantaisie:'Fantasy',court:'Short (≤2 syl.)'},labelTraits:'Personality (optional)',traits:{joueur:'Playful',calme:'Calm',curieux:'Curious',brave:'Brave',malin:'Clever',doux:'Gentle',royal:'Regal',sage:'Wise'},labelPhoto:'Pet photo (optional)',photoDrop:'Drop an image here',photoOr:'or',photoClick:'click to choose',photoHint:'The image is not uploaded — it stays on your device. Dominant colors help refine ideas.',btnGenerate:'Generate names',btnRandomize:'Randomize',btnClear:'Reset',suggestionsTitle:'Suggestions',favoritesTitle:'Favorites',footerLeftPrefix:'©',footerLeftText:'— Tiny static app. Images stay local.',exportFavs:'Export favorites',share:'Share this setup',toastCopied:'Copied ✔',toolCopy:'Copy',toolFav:'Favorite',toolCard:'Card',cardSubtitle:'Suggested name for your companion',cardFooter:'petnames.one — offline, no image upload',ageMonths:n=>`${n} months`,ageYears:y=>`${y} years`},
+    // ——— Configuration ———
+    // insérer code — config API (remplace par l’URL Vercel de ton endpoint)
+    const CONFIG = {
+      apiEndpoint: 'https://YOUR-VERCEL-APP.vercel.app/api/generate'
+    };
+    // /insérer code
 
-  fr:{dir:'ltr',metaTitle:"Prénoms d’animaux — sur-mesure",metaDesc:"Un petit outil qui propose des prénoms pour votre animal en fonction de son espèce, de son âge et (facultatif) d’une photo. 100% côté navigateur.",appTitle:"Prénoms d’animaux — sur-mesure",appTag:"Génère des idées adaptées à l’espèce, l’âge et la photo (facultatif)",labelLang:'Langue',labelSpecies:'Espèce',species:{chien:'🐶 Chien',chat:'🐱 Chat',oiseau:'🐦 Oiseau',lapin:'🐰 Lapin',cheval:'🐴 Cheval',reptile:'🦎 Reptile',rongeur:'🐭 Rongeur',poisson:'🐟 Poisson',autre:'✨ Autre'},labelAge:'Âge',agePlaceholder:'ex. 2',unitYears:'années',unitMonths:'mois',labelSex:'Sexe (optionnel)',sex:{inconnu:'Inconnu',femelle:'Femelle','mâle':'Mâle'},labelStyles:'Style des noms (optionnel)',styles:{mignon:'Mignon',classique:'Classique',nature:'Nature',mythologique:'Mythologique',fantaisie:'Fantaisie',court:'Court (≤2 syll.)'},labelTraits:'Traits de personnalité (optionnel)',traits:{joueur:'Joueur·se',calme:'Calme',curieux:'Curieux·se',brave:'Brave',malin:'Malin·e',doux:'Doux·ce',royal:'Royal·e',sage:'Sage'},labelPhoto:"Photo de l’animal (optionnel)",photoDrop:"Déposez une image ici",photoOr:"ou",photoClick:"cliquez pour choisir",photoHint:"L’image n’est pas envoyée — elle reste dans votre navigateur. Les couleurs dominantes aident à affiner les idées.",btnGenerate:'Générer des prénoms',btnRandomize:'Remplir au hasard',btnClear:'Réinitialiser',suggestionsTitle:'Suggestions',favoritesTitle:'Favoris',footerLeftPrefix:'©',footerLeftText:'— Petite app statique. Les images restent locales.',exportFavs:'Exporter les favoris',share:'Partager cette configuration',toastCopied:'Copié ✔',toolCopy:'Copier',toolFav:'Favori',toolCard:'Carte',cardSubtitle:'Prénom proposé pour votre compagnon',cardFooter:'petnames.one — hors-ligne, sans envoi d’image',ageMonths:n=>`${n} mois`,ageYears:y=>`${y} ans`},
-
-  de:{dir:'ltr',metaTitle:'Tiernamen — maßgeschneidert',metaDesc:'Ein kleines Tool, das anhand von Art, Alter und optionalem Foto Namen vorschlägt. 100% im Browser.',appTitle:'Tiernamen — maßgeschneidert',appTag:'Erzeugt Ideen basierend auf Art, Alter und (optional) Foto',labelLang:'Sprache',labelSpecies:'Tierart',species:{chien:'🐶 Hund',chat:'🐱 Katze',oiseau:'🐦 Vogel',lapin:'🐰 Kaninchen',cheval:'🐴 Pferd',reptile:'🦎 Reptil',rongeur:'🐭 Nagetier',poisson:'🐟 Fisch',autre:'✨ Andere'},labelAge:'Alter',agePlaceholder:'z. B. 2',unitYears:'Jahre',unitMonths:'Monate',labelSex:'Geschlecht (optional)',sex:{inconnu:'Unbekannt',femelle:'Weiblich','mâle':'Männlich'},labelStyles:'Namensstil (optional)',styles:{mignon:'Niedlich',classique:'Klassisch',nature:'Natur',mythologique:'Mythologisch',fantaisie:'Fantasie',court:'Kurz (≤2 Silb.)'},labelTraits:'Charakter (optional)',traits:{joueur:'Verspielt',calme:'Ruhig',curieux:'Neugierig',brave:'Mutig',malin:'Schlau',doux:'Sanft',royal:'Edel',sage:'Weise'},labelPhoto:'Haustierfoto (optional)',photoDrop:'Bild hierher ziehen',photoOr:'oder',photoClick:'zum Auswählen klicken',photoHint:'Das Bild wird nicht hochgeladen — es bleibt auf deinem Gerät. Dominante Farben helfen bei Ideen.',btnGenerate:'Namen generieren',btnRandomize:'Zufall',btnClear:'Zurücksetzen',suggestionsTitle:'Vorschläge',favoritesTitle:'Favoriten',exportFavs:'Favoriten exportieren',share:'Diese Konfiguration teilen',toastCopied:'Kopiert ✔',toolCopy:'Kopieren',toolFav:'Favorit',toolCard:'Karte',cardSubtitle:'Vorgeschlagener Name für deinen Begleiter',cardFooter:'petnames.one — offline, kein Bildupload',ageMonths:n=>`${n} Monate`,ageYears:y=>`${y} Jahre`},
-
-  es:{dir:'ltr',metaTitle:'Nombres para mascotas — a medida',metaDesc:'Una herramienta pequeña que sugiere nombres según especie, edad y una foto opcional. 100% en el navegador.',appTitle:'Nombres para mascotas — a medida',appTag:'Genera ideas según especie, edad y foto (opcional)',labelLang:'Idioma',labelSpecies:'Especie',species:{chien:'🐶 Perro',chat:'🐱 Gato',oiseau:'🐦 Ave',lapin:'🐰 Conejo',cheval:'🐴 Caballo',reptile:'🦎 Reptil',rongeur:'🐭 Roedor',poisson:'🐟 Pez',autre:'✨ Otro'},labelAge:'Edad',agePlaceholder:'p. ej. 2',unitYears:'años',unitMonths:'meses',labelSex:'Sexo (opcional)',sex:{inconnu:'Desconocido',femelle:'Hembra','mâle':'Macho'},labelStyles:'Estilo del nombre (opcional)',styles:{mignon:'Lindo',classique:'Clásico',nature:'Naturaleza',mythologique:'Mitológico',fantaisie:'Fantasía',court:'Corto (≤2 síl.)'},labelTraits:'Personalidad (opcional)',traits:{joueur:'Juguetón/a',calme:'Tranquilo/a',curieux:'Curioso/a',brave:'Valiente',malin:'Astuto/a',doux:'Tierno/a',royal:'Real',sage:'Sabio/a'},labelPhoto:'Foto de la mascota (opcional)',photoDrop:'Suelta una imagen aquí',photoOr:'o',photoClick:'haz clic para elegir',photoHint:'La imagen no se sube — se queda en tu dispositivo. Los colores dominantes ayudan a afinar ideas.',btnGenerate:'Generar nombres',btnRandomize:'Aleatorio',btnClear:'Restablecer',suggestionsTitle:'Sugerencias',favoritesTitle:'Favoritos',exportFavs:'Exportar favoritos',share:'Compartir esta configuración',toastCopied:'Copiado ✔',toolCopy:'Copiar',toolFav:'Favorito',toolCard:'Tarjeta',cardSubtitle:'Nombre sugerido para tu compañero',cardFooter:'petnames.one — sin subir imágenes',ageMonths:n=>`${n} meses`,ageYears:y=>`${y} años`},
-
-  zh:{dir:'ltr',metaTitle:'宠物名字 — 个性化',metaDesc:'根据物种、年龄和可选照片为你的宠物推荐名字。完全在浏览器中运行。',appTitle:'宠物名字 — 个性化',appTag:'基于物种、年龄和照片（可选）生成点子',labelLang:'语言',labelSpecies:'物种',species:{chien:'🐶 狗',chat:'🐱 猫',oiseau:'🐦 鸟',lapin:'🐰 兔',cheval:'🐴 马',reptile:'🦎 爬行动物',rongeur:'🐭 啮齿动物',poisson:'🐟 鱼',autre:'✨ 其他'},labelAge:'年龄',agePlaceholder:'例如 2',unitYears:'年',unitMonths:'月',labelSex:'性别（可选）',sex:{inconnu:'未知',femelle:'雌性','mâle':'雄性'},labelStyles:'名字风格（可选）',styles:{mignon:'可爱',classique:'经典',nature:'自然',mythologique:'神话',fantaisie:'奇幻',court:'短（≤2 音节）'},labelTraits:'个性（可选）',traits:{joueur:'活泼',calme:'安静',curieux:'好奇',brave:'勇敢',malin:'聪明',doux:'温柔',royal:'高贵',sage:'智慧'},labelPhoto:'宠物照片（可选）',photoDrop:'把图片拖到这里',photoOr:'或',photoClick:'点击选择',photoHint:'图片不会上传——仅保存在你的设备上。主色有助于优化建议。',btnGenerate:'生成名字',btnRandomize:'随机',btnClear:'重置',suggestionsTitle:'建议',favoritesTitle:'收藏',exportFavs:'导出收藏',share:'分享此配置',toastCopied:'复制成功 ✔',toolCopy:'复制',toolFav:'收藏',toolCard:'卡片',cardSubtitle:'为你的伙伴推荐的名字',cardFooter:'petnames.one — 离线，本地处理',ageMonths:n=>`${n} 个月`,ageYears:y=>`${y} 年`},
-
-  hi:{dir:'ltr',metaTitle:'पालतू नाम — अनुकूलित',metaDesc:'एक छोटा टूल जो प्रजाति, उम्र और वैकल्पिक फोटो के आधार पर आपके पालतू के नाम सुझाता है। 100% ब्राउज़र में।',appTitle:'पालतू नाम — अनुकूलित',appTag:'प्रजाति, उम्र और फोटो (वैकल्पिक) के आधार पर विचार जेनरेट करता है',labelLang:'भाषा',labelSpecies:'प्रजाति',species:{chien:'🐶 कुत्ता',chat:'🐱 बिल्ली',oiseau:'🐦 पक्षी',lapin:'🐰 खरगोश',cheval:'🐴 घोड़ा',reptile:'🦎 सरीसृप',rongeur:'🐭 कृतंक',poisson:'🐟 मछली',autre:'✨ अन्य'},labelAge:'आयु',agePlaceholder:'उदा. 2',unitYears:'वर्ष',unitMonths:'महीने',labelSex:'लिंग (वैकल्पिक)',sex:{inconnu:'अज्ञात',femelle:'मादा','mâle':'नर'},labelStyles:'नाम शैली (वैकल्पिक)',styles:{mignon:'प्यारा',classique:'पारंपरिक',nature:'प्रकृति',mythologique:'पौराणिक',fantaisie:'फैंटेसी',court:'छोटा (≤2 मात्राएँ)'},labelTraits:'व्यक्तित्व (वैकल्पिक)',traits:{joueur:'चंचल',calme:'शांत',curieux:'जिज्ञासु',brave:'बहादुर',malin:'चतुर',doux:'सौम्य',royal:'शाही',sage:'बुद्धिमान'},labelPhoto:'पालतू की फोटो (वैकल्पिक)',photoDrop:'यहाँ छवि डालें',photoOr:'या',photoClick:'चुनने के लिए क्लिक करें',photoHint:'छवि अपलोड नहीं होती — यह आपके डिवाइस पर ही रहती है। प्रमुख रंग सुझावों को बेहतर करते हैं।',btnGenerate:'नाम जेनरेट करें',btnRandomize:'रैंडमाइज़',btnClear:'रीसेट',suggestionsTitle:'सुझाव',favoritesTitle:'पसंदीदा',exportFavs:'पसंदीदा निर्यात करें',share:'यह सेटअप साझा करें',toastCopied:'प्रतिलिपि हुई ✔',toolCopy:'कॉपी',toolFav:'पसंद',toolCard:'कार्ड',cardSubtitle:'आपके साथी के लिए सुझाया गया नाम',cardFooter:'petnames.one — ऑफलाइन, छवि अपलोड नहीं',ageMonths:n=>`${n} महीने`,ageYears:y=>`${y} वर्ष`},
-
-  ar:{dir:'rtl',metaTitle:'أسماء للحيوانات الأليفة — مخصّصة',metaDesc:'أداة صغيرة تقترح أسماءً لحيوانك الأليف حسب النوع والعمر وصورة اختيارية. تعمل بالكامل على المتصفح.',appTitle:'أسماء للحيوانات الأليفة — مخصّصة',appTag:'تولّد أفكارًا حسب النوع والعمر والصورة (اختياري)',labelLang:'اللغة',labelSpecies:'النوع',species:{chien:'🐶 كلب',chat:'🐱 قط',oiseau:'🐦 طائر',lapin:'🐰 أرنب',cheval:'🐴 حصان',reptile:'🦎 زاحف',rongeur:'🐭 قارض',poisson:'🐟 سمكة',autre:'✨ أخرى'},labelAge:'العمر',agePlaceholder:'مثلاً 2',unitYears:'سنوات',unitMonths:'أشهر',labelSex:'الجنس (اختياري)',sex:{inconnu:'غير معروف',femelle:'أنثى','mâle':'ذكر'},labelStyles:'نمط الاسم (اختياري)',styles:{mignon:'لطيف',classique:'كلاسيكي',nature:'طبيعي',mythologique:'أسطوري',fantaisie:'خيالي',court:'قصير (≤2 مقطع)'},labelTraits:'السمات (اختياري)',traits:{joueur:'لعوب',calme:'هادئ',curieux:'فضولي',brave:'شجاع',malin:'ذكي',doux:'رقيق',royal:'نبيل',sage:'حكيم'},labelPhoto:'صورة الحيوان الأليف (اختيارية)',photoDrop:'اسحب صورة هنا',photoOr:'أو',photoClick:'انقر للاختيار',photoHint:'لن يتم رفع الصورة — تبقى على جهازك. تساعد الألوان السائدة على تحسين الاقتراحات.',btnGenerate:'اقترح أسماء',btnRandomize:'عشوائي',btnClear:'إعادة التعيين',suggestionsTitle:'الاقتراحات',favoritesTitle:'المفضلة',exportFavs:'تصدير المفضلة',share:'مشاركة هذا الإعداد',toastCopied:'تم النسخ ✔',toolCopy:'نسخ',toolFav:'مفضلة',toolCard:'بطاقة',cardSubtitle:'اسم مقترح لرفيقك',cardFooter:'petnames.one — دون رفع الصور',ageMonths:n=>`${n} شهرًا`,ageYears:y=>`${y} سنة`},
-
-  bn:{dir:'ltr',metaTitle:'পোষ্যের নাম — ব্যক্তিগতকৃত',metaDesc:'ছোট একটি টুল যা প্রজাতি, বয়স এবং ঐচ্ছিক ছবির ভিত্তিতে আপনার পোষ্যের নাম প্রস্তাব করে। সম্পূর্ণ ব্রাউজারে।',appTitle:'পোষ্যের নাম — ব্যক্তিগতকৃত',appTag:'প্রজাতি, বয়স এবং ছবি (ঐচ্ছিক) অনুযায়ী আইডিয়া তৈরি করে',labelLang:'ভাষা',labelSpecies:'প্রজাতি',species:{chien:'🐶 কুকুর',chat:'🐱 বিড়াল',oiseau:'🐦 পাখি',lapin:'🐰 খরগোশ',cheval:'🐴 ঘোড়া',reptile:'🦎 সরীসৃপ',rongeur:'🐭 কৃন্তক',poisson:'🐟 মাছ',autre:'✨ অন্যান্য'},labelAge:'বয়স',agePlaceholder:'উদা. 2',unitYears:'বছর',unitMonths:'মাস',labelSex:'লিঙ্গ (ঐচ্ছিক)',sex:{inconnu:'অজানা',femelle:'স্ত্রী','mâle':'পুরুষ'},labelStyles:'নামের ধরন (ঐচ্ছিক)',styles:{mignon:'মিষ্টি',classique:'ধ্রুপদী',nature:'প্রকৃতি',mythologique:'পৌরাণিক',fantaisie:'ফ্যান্টাসি',court:'ছোট (≤২ মাত্রা)'},labelTraits:'ব্যক্তিত্ব (ঐচ্ছিক)',traits:{joueur:'চঞ্চল',calme:'শান্ত',curieux:'কৌতূহলী',brave:'সাহসী',malin:'বুদ্ধিমান',doux:'নম্র',royal:'রাজকীয়',sage:'জ্ঞানী'},labelPhoto:'পোষ্যের ছবি (ঐচ্ছিক)',photoDrop:'এখানে ছবি ফেলুন',photoOr:'অথবা',photoClick:'পছন্দ করতে ক্লিক করুন',photoHint:'ছবিটি আপলোড হয় না — এটি আপনার ডিভাইসেই থাকে। প্রধান রঙগুলো প্রস্তাব ঠিক করতে সাহায্য করে।',btnGenerate:'নাম তৈরি করুন',btnRandomize:'র‌্যান্ডম',btnClear:'রিসেট',suggestionsTitle:'প্রস্তাব',favoritesTitle:'পছন্দের',exportFavs:'পছন্দের রপ্তানি',share:'এই সেটআপ শেয়ার করুন',toastCopied:'কপি হয়েছে ✔',toolCopy:'কপি',toolFav:'প্রিয়',toolCard:'কার্ড',cardSubtitle:'আপনার সঙ্গীর জন্য প্রস্তাবিত নাম',cardFooter:'petnames.one — অফলাইন, ছবি আপলোড নয়',ageMonths:n=>`${n} মাস`,ageYears:y=>`${y} বছর`}
-};
-
-    const CONFIG = { apiEndpoint: null };
-    const $ = sel => document.querySelector(sel);
+    const $  = sel => document.querySelector(sel);
     const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-    const state = { image:null, imageColors:[], favorites: JSON.parse(localStorage.getItem('petname.favs')||'[]'), lang:'en', lastResults:[], lastForm:null, labels: I18N['en'] };
+    const I18N = {
+      en:{dir:'ltr',metaTitle:'Pet names — tailored',metaDesc:'A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in-browser.',appTitle:'Pet names — tailored',appTag:'Generates ideas based on species, age, and photo (optional)',labelLang:'Language',labelSpecies:'Species',species:{chien:'🐶 Dog',chat:'🐱 Cat',oiseau:'🐦 Bird',lapin:'🐰 Rabbit',cheval:'🐴 Horse',reptile:'🦎 Reptile',rongeur:'🐭 Rodent',poisson:'🐟 Fish',autre:'✨ Other'},labelAge:'Age',agePlaceholder:'e.g. 2',unitYears:'years',unitMonths:'months',labelSex:'Sex (optional)',sex:{inconnu:'Unknown',femelle:'Female','mâle':'Male'},labelStyles:'Name style (optional)',styles:{mignon:'Cute',classique:'Classic',nature:'Nature',mythologique:'Mythologic',fantaisie:'Fantasy',court:'Short (≤2 syl.)'},labelTraits:'Personality (optional)',traits:{joueur:'Playful',calme:'Calm',curieux:'Curious',brave:'Brave',malin:'Clever',doux:'Gentle',royal:'Regal',sage:'Wise'},labelPhoto:'Pet photo (optional)',photoDrop:'Drop an image here',photoOr:'or',photoClick:'click to choose',photoHint:'The image is not uploaded — it stays on your device. Dominant colors help refine ideas.',btnGenerate:'Generate names',btnRandomize:'Randomize',btnClear:'Reset',suggestionsTitle:'Suggestions',favoritesTitle:'Favorites',footerLeftPrefix:'©',footerLeftText:'— Tiny static app. Images stay local.',exportFavs:'Export favorites',share:'Share this setup',toastCopied:'Copied ✔',toolCopy:'Copy',toolFav:'Favorite',toolCard:'Card',cardSubtitle:'Suggested name for your companion',cardFooter:'petnames.one — offline, no image upload',ageMonths:n=>`${n} months`,ageYears:y=>`${y} years`}
+    };
 
-    function applyI18n(lang){
-      state.lang = lang; state.labels = I18N[lang] || I18N.en; localStorage.setItem('petname.lang', lang);
-      document.documentElement.lang = lang; document.documentElement.dir = state.labels.dir || (lang==='ar'?'rtl':'ltr');
-      $('#metaTitle').textContent = state.labels.metaTitle; document.title = state.labels.metaTitle;
-      $('#metaDesc').setAttribute('content', state.labels.metaDesc);
-      $('#appTitle').textContent = state.labels.appTitle; $('#appTag').textContent = state.labels.appTag; $('#labelLang').textContent = state.labels.labelLang;
-      for(const [val, text] of Object.entries(state.labels.species)){ const opt = $(`#species option[value="${CSS.escape(val)}"]`); if(opt) opt.textContent = text; }
-      $('#labelSpecies').textContent = state.labels.labelSpecies;
-      $('#labelAge').textContent = state.labels.labelAge; $('#age').setAttribute('placeholder', state.labels.agePlaceholder); $('#ageUnit option[value="years"]').textContent = state.labels.unitYears; $('#ageUnit option[value="months"]').textContent = state.labels.unitMonths;
-      $('#labelSex').textContent = state.labels.labelSex; for(const [val, text] of Object.entries(state.labels.sex)){ const opt = $(`#sex option[value="${CSS.escape(val)}"]`); if(opt) opt.textContent = text; }
-      $('#labelStyles').textContent = state.labels.labelStyles; for(const [key, text] of Object.entries(state.labels.styles)){ const el = $(`#chip-style-${key}`); if(el) el.textContent = text; }
-      $('#labelTraits').textContent = state.labels.labelTraits; for(const [key, text] of Object.entries(state.labels.traits)){ const el = $(`#chip-trait-${key}`); if(el) el.textContent = text; }
-      $('#labelPhoto').textContent = state.labels.labelPhoto; $('#photoDrop').textContent = state.labels.photoDrop; $('#photoOr').textContent = state.labels.photoOr; $('#photoClick').textContent = state.labels.photoClick; $('#photoHint').textContent = state.labels.photoHint;
-      $('#generate').textContent = state.labels.btnGenerate; $('#randomize').textContent = state.labels.btnRandomize; $('#clear').textContent = state.labels.btnClear;
-      $('#suggestionsTitle').textContent = state.labels.suggestionsTitle; $('#favoritesTitle').textContent = state.labels.favoritesTitle; $('#toast').textContent = state.labels.toastCopied;
-      $('#footerLeft').innerHTML = `${state.labels.footerLeftPrefix||'©'} <span id="year"></span> ${state.labels.footerLeftText||'— Tiny static app. Images stay local.'} <a href="#" id="exportFavs">${state.labels.exportFavs||'Export favorites'}</a>`; $('#year').textContent = new Date().getFullYear();
-      document.addEventListener('click', handleExportFavsOnce, { once:true });
-      if(state.lastResults.length && state.lastForm){ renderResults(state.lastResults, state.lastForm); }
-      // (Plus de ?lang= dans l'URL ; on navigue par dossier via le switcher ci-dessous)
-    }
+    const state = {
+      image: null,
+      imageColors: [],
+      favorites: JSON.parse(localStorage.getItem('petname.favs')||'[]'),
+      lastResults: [],
+      lastForm: null,
+      labels: I18N.en,
+      aiPhotoPolicy: localStorage.getItem('ai_photo_policy') || 'ask' // 'ask' | 'allow' | 'deny'
+    };
 
-    function handleExportFavsOnce(e){ const a=e.target.closest('#exportFavs'); if(a){ e.preventDefault(); const blob=new Blob([state.favorites.join('\n')],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a2=document.createElement('a'); a2.href=url; a2.download='favorites.txt'; a2.click(); URL.revokeObjectURL(url); }}
-
-    const toast = (msg)=>{ const t=$('#toast'); t.textContent = msg || state.labels.toastCopied || 'Copied ✔'; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); };
+    const toast = (msg)=>{ const t=$('#toast'); t.textContent = msg || state.labels.toastCopied; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); };
     const setCount = n => $('#count').textContent = String(n);
 
-    function setupChips(containerSel){ const cont = $(containerSel); cont.addEventListener('click',(e)=>{ const chip=e.target.closest('.chip'); if(!chip) return; chip.classList.toggle('active'); }); }
+    // ——— Chips ———
+    function setupChips(containerSel){
+      const cont = $(containerSel);
+      cont.addEventListener('click', (e)=>{
+        const chip = e.target.closest('.chip');
+        if(!chip) return;
+        chip.classList.toggle('active');
+      });
+    }
     setupChips('#styles'); setupChips('#traits');
 
-    const fileInput=$('#file'); const filedrop=$('#filedrop'); const thumb=$('#thumb');
-    function preview(file){ if(!file) return; const reader=new FileReader(); reader.onload=()=>{ state.image=reader.result; const img=new Image(); img.onload=()=>{ thumb.innerHTML=''; thumb.appendChild(img); extractDominantColors(img).then(colors=>{ state.imageColors=colors; }); }; img.src=reader.result; }; reader.readAsDataURL(file); }
-    fileInput.addEventListener('change', e=> preview(e.target.files?.[0]));
-    ;['dragenter','dragover'].forEach(ev=> filedrop.addEventListener(ev,(e)=>{e.preventDefault(); filedrop.style.borderColor='#6fb4ff';}));
-    ;['dragleave','drop'].forEach(ev=> filedrop.addEventListener(ev,(e)=>{e.preventDefault(); filedrop.style.borderColor='rgba(255,255,255,.08)';}));
-    filedrop.addEventListener('drop', e=>{ const f=e.dataTransfer.files?.[0]; if(f && f.type.startsWith('image/')) preview(f); });
+    // ——— Drag & Drop image ———
+    const fileInput = $('#file');
+    const filedrop  = $('#filedrop');
+    const thumb     = $('#thumb');
+    const aiBanner  = $('#aiBanner');
 
-    function getForm(){ const species=$('#species').value; const ageVal=parseFloat($('#age').value||'0'); const ageMonths=$('#ageUnit').value==='years'?Math.round(ageVal*12):Math.round(ageVal); const sex=$('#sex').value; const styles=$$('#styles .chip.active').map(c=>c.dataset.style); const traits=$$('#traits .chip.active').map(c=>c.dataset.trait); return { species, ageMonths, sex, styles, traits, colorHints: state.imageColors, hasImage: !!state.image }; }
-    function randomize(){ const speciesOpts=['chien','chat','oiseau','lapin','cheval','reptile','rongeur','poisson','autre']; $('#species').value=pick(speciesOpts); $('#age').value=(Math.random()*8).toFixed(1); $('#ageUnit').value=Math.random()>.5?'years':'months'; $('#sex').value=pick(['inconnu','femelle','mâle']); ['#styles','#traits'].forEach(sel=>{ $$(sel+' .chip').forEach(c=>c.classList.remove('active')); $$(sel+' .chip').filter(()=>Math.random()>.65).forEach(c=>c.classList.add('active')); }); }
-    $('#randomize').addEventListener('click', ()=> randomize());
+    function preview(file){
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        state.image = reader.result;
+        const img = new Image();
+        img.onload = () => {
+          thumb.innerHTML = '';
+          thumb.appendChild(img);
+          extractDominantColors(img).then(colors=>{
+            state.imageColors = colors;
+          });
+          updateAIBanner(); // afficher/masquer le bandeau IA
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateAIBanner(){
+      if(!state.image) { aiBanner.classList.remove('show'); return; }
+      aiBanner.classList.toggle('show', state.aiPhotoPolicy === 'ask');
+    }
+
+    $('#aiAllow').addEventListener('click', ()=>{ state.aiPhotoPolicy = 'allow'; aiBanner.classList.remove('show'); });
+    $('#aiAlways').addEventListener('click', ()=>{ state.aiPhotoPolicy = 'allow'; localStorage.setItem('ai_photo_policy','allow'); aiBanner.classList.remove('show'); });
+    $('#aiDeny').addEventListener('click', ()=>{ state.aiPhotoPolicy = 'deny'; localStorage.setItem('ai_photo_policy','deny'); aiBanner.classList.remove('show'); });
+
+    fileInput.addEventListener('change', e=> preview(e.target.files?.[0]));
+    ;['dragenter','dragover'].forEach(ev=>{
+      filedrop.addEventListener(ev, e=>{e.preventDefault(); filedrop.style.borderColor = '#6fb4ff';});
+    });
+    ;['dragleave','drop'].forEach(ev=>{
+      filedrop.addEventListener(ev, e=>{e.preventDefault(); filedrop.style.borderColor = 'rgba(255,255,255,.08)';});
+    });
+    filedrop.addEventListener('drop', e=>{
+      const f = e.dataTransfer.files?.[0];
+      if(f && f.type.startsWith('image/')) preview(f);
+    });
+
+    // ——— Form helpers ———
+    function getForm(){
+      const species = $('#species').value;
+      const ageVal = parseFloat($('#age').value || '0');
+      const ageMonths = $('#ageUnit').value === 'years' ? Math.round(ageVal*12) : Math.round(ageVal);
+      const sex = $('#sex').value;
+      const styles = $$('#styles .chip.active').map(c=>c.dataset.style);
+      const traits = $$('#traits .chip.active').map(c=>c.dataset.trait);
+      return {
+        species, ageMonths, sex, styles, traits,
+        colorHints: state.imageColors,
+        hasImage: !!state.image,
+        imageDataUrl: state.image || null
+      };
+    }
+
+    function randomize(){
+      const speciesOpts = ['chien','chat','oiseau','lapin','cheval','reptile','rongeur','poisson','autre'];
+      $('#species').value = pick(speciesOpts);
+      $('#age').value = (Math.random()*8).toFixed(1);
+      $('#ageUnit').value = Math.random()>.5 ? 'years' : 'months';
+      $('#sex').value = pick(['inconnu','femelle','mâle']);
+      ['#styles','#traits'].forEach(sel=>{
+        $$(sel+' .chip').forEach(c=>c.classList.remove('active'));
+        $$(sel+' .chip').filter(()=>Math.random()>.65).forEach(c=>c.classList.add('active'));
+      });
+    }
+
+    $('#randomize').addEventListener('click', randomize);
     $('#clear').addEventListener('click', ()=>{ location.href = location.pathname; });
 
-    $('#generate').addEventListener('click', async ()=>{ const form=getForm(); const names= CONFIG.apiEndpoint ? await generateRemote(form) : generateLocal(form); state.lastResults=names; state.lastForm=form; renderResults(names, form); });
-    async function generateRemote(form){ try{ const res=await fetch(CONFIG.apiEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(form)}); const data=await res.json(); if(Array.isArray(data.names)) return data.names.slice(0,24); }catch(err){ console.warn('Remote generation failed, using local.', err); } return generateLocal(form); }
+    // ——— Generation ———
+    $('#generate').addEventListener('click', async ()=>{
+      const form = getForm();
 
-    function generateLocal({species, ageMonths, sex, styles, traits, colorHints}){ const pool=buildSyllablePool(species, styles); const targetSyll = styles.includes('court')?[1,2]:[1,2,2,3]; const ageTag = ageMonths<=12?'bébé':ageMonths<72?'jeune':'adulte'; const vibe=[...styles,...traits,ageTag,sex]; const colorNames=colorHintsToNames(colorHints); const results=new Set(); let fails=0; while(results.size<18 && fails<200){ const sylCount=pick(targetSyll); let name=''; for(let i=0;i<sylCount;i++) name+=pick(pool); name=postProcess(name, species, vibe); if(colorNames.length && Math.random()>0.7){ name=blend(name, pick(colorNames)); } name=name.charAt(0).toUpperCase()+name.slice(1); if(/^[A-Za-zÀ-ÿ\-]{3,15}$/.test(name)) results.add(name); else fails++; } const themed=themedNames(species, styles, colorHints, sex); themed.forEach(n=>results.add(n)); return Array.from(results).slice(0,24); }
+      // Politique confidentialité “IA” côté utilisateur :
+      if(CONFIG.apiEndpoint){
+        if(form.hasImage){
+          if(state.aiPhotoPolicy === 'deny'){ form.imageDataUrl = null; form.hasImage = false; }
+          else if(state.aiPhotoPolicy === 'ask'){
+            // si bannière encore visible, on ne bloque pas, mais on envoie par défaut SANS image
+            form.imageDataUrl = null; form.hasImage = false;
+          }
+        }
+      }
 
-    function buildSyllablePool(species, styles){ const base=['lo','la','li','lu','ly','no','na','ne','ni','nu','mi','ma','mo','mu','ka','ko','ki','ku','zo','za','ze','zi','zu','ru','ra','re','ri','ro','ta','te','ti','to','tu','po','pa','pe','pi','pu','fa','fe','fi','fo','ga','go','gi','gu','ya','yo','yu','bo','ba','be','bi','bu','cha','cho','chi','chu','sha','sho','shi','shu','co','ca','ce','ci','cu','do','da','de','di','du','el','en','ar','is','or','us','an','in','on','eu','é','lae','rae','lyr','my','ny','ae','ia','eo']; const cat=['mi','min','ny','nya','roux','rou','cha','cha','tou','tou','plu','plume','shi','mou','pel','pel','gra','gris','nois','sette']; const dog=['rex','max','kai','kao','bao','brun','dog','wolf','ran','bark','nix','fox','zo','zor','zor','bal','kan','leo']; const bird=['pi','pio','twi','twi','rio','rio','ari','ari','lark','azur','ciel','plu','plu','aer','avel']; const rabbit=['lap','pin','nois','ette','coco','neige','flop','eared','pom','pon','nini']; const horse=['gal','lop','ael','ael','mane','crin','siro','safir','lune','sole','vento']; const reptile=['sli','ther','sco','co','yra','yr','ona','gex','gla','dru']; const rodent=['nois','ette','miot','mimi','pix','pip','tika','nux']; const fish=['na','ri','mo','ma','mar','bril','azur','coral','nemo','bub']; const other=['zeph','lyr','neo','or','el','aer','myr','quill']; let speciesPool=base; switch(species){ case 'chat': speciesPool=base.concat(cat); break; case 'chien': speciesPool=base.concat(dog); break; case 'oiseau': speciesPool=base.concat(bird); break; case 'lapin': speciesPool=base.concat(rabbit); break; case 'cheval': speciesPool=base.concat(horse); break; case 'reptile': speciesPool=base.concat(reptile); break; case 'rongeur': speciesPool=base.concat(rodent); break; case 'poisson': speciesPool=base.concat(fish); break; default: speciesPool=base.concat(other); break; } if(styles.includes('mythologique')) speciesPool = speciesPool.concat(['aen','aeon','thor','odin','isis','hera','zeus','posei','dion','ra','yor']); if(styles.includes('nature')) speciesPool = speciesPool.concat(['flor','luz','sol','lune','neige','mousse','écor','ciel','roc','bois','vent']); if(styles.includes('fantaisie')) speciesPool = speciesPool.concat(['fae','fae','lyn','wyn','ari','syl','drac','pyro','hydra','glen','vale']); if(styles.includes('classique')) speciesPool = speciesPool.concat(['bella','louis','léo','lena','milo','nina','nora','nora','paul','tom','jade','lila']); return speciesPool; }
+      const names = CONFIG.apiEndpoint ? await generateRemote(form) : generateLocal(form);
+      state.lastResults = names; state.lastForm = form;
+      renderResults(names, form);
+    });
 
-    function postProcess(name, species, vibe){ name = name.replace(/([a-zéàè])\1{2,}/gi,'$1$1'); name = name.replace(/([aeiouy])([aeiouy])/gi,'$1'); if(species==='chat'||species==='chien'){ name = name.replace(/ny|nya/gi,'nya'); } if(vibe.includes('mignon')){ if(!/[ou]$/.test(name)) name += pick(['ou','u','ou','i']); } if(vibe.includes('court')){ name = name.replace(/([a-z]{1,3}).*/i,'$1'); if(name.length<3) name += pick(['a','i','o']); } return name; }
+    async function generateRemote(form){
+      try{
+        const res = await fetch(CONFIG.apiEndpoint, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(form),
+          // Important si Vercel limite l’origin : on envoie Referer automatiquement
+        });
+        if(!res.ok) throw new Error('Bad status '+res.status);
+        const data = await res.json();
+        if(Array.isArray(data.names)) return data.names.slice(0,24);
+      }catch(err){
+        console.warn('Remote generation failed, using local.', err);
+      }
+      return generateLocal(form);
+    }
 
-    function colorHintsToNames(hints){ const map={ ambre:['Ambre','Miel','Caramel','Cannelle','Moka'], neige:['Neige','Perle','Lumi','Ivory','Aurore'], ébène:['Ébène','Sombrelune','Onyx','Réglisse'], cuivre:['Cuivre','Roux','Châtaigne','Noisette','Flamme'], saphir:['Saphir','Azura','Bleuet','Ciel'], jade:['Jade','Verdi','Mousse','Émeraude'], corail:['Corail','Rosée','Pêche','Saumon'] }; const out=[]; hints.forEach(h=>{ (map[h]||[]).forEach(n=>out.push(n)); }); return out; }
+    // ——— Local name generator (fallback) ———
+    function generateLocal({species, ageMonths, sex, styles, traits, colorHints}){
+      const pool = buildSyllablePool(species, styles);
+      const targetSyll = styles.includes('court') ? [1,2] : [1,2,2,3];
+      const ageTag = ageMonths <= 12 ? 'bébé' : ageMonths < 72 ? 'jeune' : 'adulte';
+      const vibe = [...styles, ...traits, ageTag, sex];
+      const colorNames = colorHintsToNames(colorHints);
 
-    function themedNames(species, styles, colorHints, sex){ const bank=[]; if(styles.includes('classique')) bank.push(...(sex==='femelle'?['Luna','Bella','Lily','Nina','Jade']:['Milo','Léo','Oscar','Toby','Hugo'])); if(styles.includes('mythologique')) bank.push(...['Hermès','Gaïa','Iris','Nox','Thor','Héra','Athéna','Orion']); if(styles.includes('nature')) bank.push(...['Bambou','Brise','Flocon','Rosée','Ruisseau','Brume']); if(colorHints.includes('ambre')) bank.push('Canelle','Moka'); if(species==='oiseau') bank.push('Plume','Azur'); if(species==='cheval') bank.push('Tempête','Galop'); if(species==='poisson') bank.push('Bubble','Coral'); return shuffle(bank).slice(0,6); }
+      const results = new Set();
+      let fails = 0;
+      while(results.size < 18 && fails < 200){
+        const sylCount = pick(targetSyll);
+        let name = '';
+        for(let i=0;i<sylCount;i++) name += pick(pool);
+        name = postProcess(name, species, vibe);
+        if(colorNames.length && Math.random()>0.7){ name = blend(name, pick(colorNames)); }
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        if(/^[A-Za-zÀ-ÿ\-]{3,15}$/.test(name)) results.add(name);
+        else fails++;
+      }
+      const themed = themedNames(species, styles, colorHints, sex);
+      themed.forEach(n=>results.add(n));
+      return Array.from(results).slice(0,24);
+    }
 
-    async function extractDominantColors(img){ const canvas=document.createElement('canvas'); const ctx=canvas.getContext('2d',{willReadFrequently:true}); const w=canvas.width=120; const h=canvas.height=Math.round(img.height*(w/img.width)); ctx.drawImage(img,0,0,w,h); const data=ctx.getImageData(0,0,w,h).data; let r=0,g=0,b=0,count=0,sumL=0; for(let i=0;i<data.length;i+=16){ const R=data[i],G=data[i+1],B=data[i+2]; const a=data[i+3]; if(a<180) continue; r+=R; g+=G; b+=B; count++; sumL+=0.2126*R+0.7152*G+0.0722*B; } if(!count) return []; r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count); const avgL=sumL/count; const hue=rgbToHue(r,g,b); const colors=[]; if(avgL>210) colors.push('neige'); if(avgL<60) colors.push('ébène'); if(hue>=15&&hue<45) colors.push('ambre'); if(hue>=45&&hue<90) colors.push('jade'); if(hue>=190&&hue<250) colors.push('saphir'); if(hue>=330||hue<15) colors.push('corail'); if(hue>=15&&hue<25) colors.push('cuivre'); return Array.from(new Set(colors)); }
-    function rgbToHue(r,g,b){ r/=255; g/=255; b/=255; const max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min; if(d===0) return 0; let h; switch(max){ case r: h=(g-b)/d+(g<b?6:0); break; case g: h=(b-r)/d+2; break; case b: h=(r-g)/d+4; break;} h/=6; return Math.round(h*360); }
+    function buildSyllablePool(species, styles){
+      const base = ['lo','la','li','lu','ly','no','na','ne','ni','nu','mi','ma','mo','mu','ka','ko','ki','ku','zo','za','ze','zi','zu','ru','ra','re','ri','ro','ta','te','ti','to','tu','po','pa','pe','pi','pu','fa','fe','fi','fo','ga','go','gi','gu','ya','yo','yu','bo','ba','be','bi','bu','cha','cho','chi','chu','sha','sho','shi','shu','co','ca','ce','ci','cu','do','da','de','di','du','el','en','ar','is','or','us','an','in','on','eu','é','lae','rae','lyr','my','ny','ae','ia','eo'];
+      const cat = ['mi','min','ny','nya','roux','rou','cha','cha','tou','tou','plu','plume','shi','mou','pel','pel','gra','gris','nois','sette'];
+      const dog = ['rex','max','kai','kao','bao','brun','dog','wolf','ran','bark','nix','fox','zo','zor','zor','bal','kan','leo'];
+      const bird = ['pi','pio','twi','twi','rio','rio','ari','ari','lark','azur','ciel','plu','plu','aer','avel'];
+      const rabbit = ['lap','pin','nois','ette','coco','neige','flop','eared','pom','pon','nini'];
+      const horse = ['gal','lop','ael','ael','mane','crin','siro','safir','lune','sole','vento'];
+      const reptile = ['sli','ther','sco','co','yra','yr','ona','gex','gla','dru'];
+      const rodent = ['nois','ette','miot','mimi','pix','pip','tika','nux'];
+      const fish = ['na','ri','mo','ma','mar','bril','azur','coral','nemo','bub'];
+      const other = ['zeph','lyr','neo','or','el','aer','myr','quill'];
 
-    function renderResults(names, form){ const grid=$('#grid'); grid.innerHTML=''; names.forEach(n=>{ grid.appendChild(nameCard(n, form)); }); setCount(names.length); renderFavs(); const params=new URLSearchParams(location.search); params.set('species',form.species); params.set('age',form.ageMonths); params.set('sex',form.sex); if(form.styles.length) params.set('styles',form.styles.join(',')); if(form.traits.length) params.set('traits',form.traits.join(',')); params.set('lang',state.lang); history.replaceState({},'',`${location.pathname}?${params.toString()}`); }
+      let speciesPool = base;
+      switch(species){
+        case 'chat': speciesPool = base.concat(cat); break;
+        case 'chien': speciesPool = base.concat(dog); break;
+        case 'oiseau': speciesPool = base.concat(bird); break;
+        case 'lapin': speciesPool = base.concat(rabbit); break;
+        case 'cheval': speciesPool = base.concat(horse); break;
+        case 'reptile': speciesPool = base.concat(reptile); break;
+        case 'rongeur': speciesPool = base.concat(rodent); break;
+        case 'poisson': speciesPool = base.concat(fish); break;
+        default: speciesPool = base.concat(other); break;
+      }
 
-    function nameCard(name, form){ const card=document.createElement('div'); card.className='card'; const left=document.createElement('div'); left.innerHTML = `<div class="name">${escapeHtml(name)}</div><div class="sub">${emojiFor(form.species)} ${escapeHtml(displaySpecies(form.species))} • ${humanAge(form.ageMonths)} • ${escapeHtml(displaySex(form.sex))}</div>`; const tools=document.createElement('div'); tools.className='tools'; const btnCopy=iconButton('📋',state.labels.toolCopy||'Copy'); btnCopy.addEventListener('click',()=>{ navigator.clipboard.writeText(name); toast(); }); const btnFav=iconButton(isFav(name)?'★':'☆',state.labels.toolFav||'Favorite'); btnFav.addEventListener('click',()=>{ toggleFav(name); btnFav.textContent=isFav(name)?'★':'☆'; renderFavs(); }); const btnCard=iconButton('🖼️',state.labels.toolCard||'Card'); btnCard.addEventListener('click',()=>{ downloadCard(name); }); tools.append(btnCopy,btnFav,btnCard); card.append(left, tools); return card; }
+      if(styles.includes('mythologique')) speciesPool = speciesPool.concat(['aen','aeon','thor','odin','isis','hera','zeus','posei','dion','ra','yor']);
+      if(styles.includes('nature')) speciesPool = speciesPool.concat(['flor','luz','sol','lune','neige','mousse','écor','ciel','roc','bois','vent']);
+      if(styles.includes('fantaisie')) speciesPool = speciesPool.concat(['fae','fae','lyn','wyn','ari','syl','drac','pyro','hydra','glen','vale']);
+      if(styles.includes('classique')) speciesPool = speciesPool.concat(['bella','louis','léo','lena','milo','nina','nora','nora','paul','tom','jade','lila']);
+
+      return speciesPool;
+    }
+
+    function postProcess(name, species, vibe){
+      name = name.replace(/([a-zéàè])\1{2,}/gi,'$1$1');
+      name = name.replace(/([aeiouy])([aeiouy])/gi,'$1');
+      if(species==='chat'||species==='chien'){ name = name.replace(/ny|nya/gi,'nya'); }
+      if(vibe.includes('mignon')){
+        if(!/[ou]$/.test(name)) name += pick(['ou','u','ou','i']);
+      }
+      if(vibe.includes('court')){
+        name = name.replace(/([a-z]{1,3}).*/i,'$1');
+        if(name.length<3) name += pick(['a','i','o']);
+      }
+      return name;
+    }
+
+    function blend(a,b){
+      const clean = String(b||'').replace(/[^A-Za-zÀ-ÿ]/g,'');
+      if(!clean) return a;
+      return Math.random()<0.5 ? (clean + a.toLowerCase()) : (a + clean);
+    }
+
+    function colorHintsToNames(hints){
+      const map = {
+        ambre: ['Ambre','Miel','Caramel','Cannelle','Moka'],
+        neige: ['Neige','Perle','Lumi','Ivory','Aurore'],
+        ébène: ['Ébène','Sombrelune','Onyx','Réglisse'],
+        cuivre: ['Cuivre','Roux','Châtaigne','Noisette','Flamme'],
+        saphir: ['Saphir','Azura','Bleuet','Ciel'],
+        jade: ['Jade','Verdi','Mousse','Émeraude'],
+        corail: ['Corail','Rosée','Pêche','Saumon']
+      };
+      const out = [];
+      hints.forEach(h=>{ (map[h]||[]).forEach(n=>out.push(n)); });
+      return out;
+    }
+
+    function themedNames(species, styles, colorHints, sex){
+      const bank = [];
+      if(styles.includes('classique')) bank.push(...(sex==='femelle' ? ['Luna','Bella','Lily','Nina','Jade'] : ['Milo','Léo','Oscar','Toby','Hugo']));
+      if(styles.includes('mythologique')) bank.push(...['Hermès','Gaïa','Iris','Nox','Thor','Héra','Athéna','Orion']);
+      if(styles.includes('nature')) bank.push(...['Bambou','Brise','Flocon','Rosée','Ruisseau','Brume']);
+      if(colorHints.includes('ambre')) bank.push('Canelle','Moka');
+      if(species==='oiseau') bank.push('Plume','Azur');
+      if(species==='cheval') bank.push('Tempête','Galop');
+      if(species==='poisson') bank.push('Bubble','Coral');
+      return shuffle(bank).slice(0,6);
+    }
+
+    // ——— Image color extraction ———
+    async function extractDominantColors(img){
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      const w = canvas.width = 120;
+      const h = canvas.height = Math.round(img.height * (w/img.width));
+      ctx.drawImage(img, 0, 0, w, h);
+      const data = ctx.getImageData(0,0,w,h).data;
+      let r=0,g=0,b=0,count=0,sumL=0;
+      for(let i=0;i<data.length;i+=16){
+        const R=data[i], G=data[i+1], B=data[i+2], a=data[i+3];
+        if(a<180) continue;
+        r+=R; g+=G; b+=B; count++;
+        sumL += 0.2126*R + 0.7152*G + 0.0722*B;
+      }
+      if(!count) return [];
+      r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count);
+      const avgL = sumL/count;
+      const hue = rgbToHue(r,g,b);
+      const colors=[];
+      if(avgL>210) colors.push('neige');
+      if(avgL<60) colors.push('ébène');
+      if(hue>=15 && hue<45) colors.push('ambre');
+      if(hue>=45 && hue<90) colors.push('jade');
+      if(hue>=190 && hue<250) colors.push('saphir');
+      if(hue>=330 || hue<15) colors.push('corail');
+      if(hue>=15 && hue<25) colors.push('cuivre');
+      return Array.from(new Set(colors));
+    }
+    function rgbToHue(r,g,b){
+      r/=255; g/=255; b/=255;
+      const max=Math.max(r,g,b), min=Math.min(r,g,b);
+      const d=max-min; if(d===0) return 0;
+      let h;
+      switch(max){ case r: h=(g-b)/d + (g<b?6:0); break;
+        case g: h=(b-r)/d + 2; break;
+        case b: h=(r-g)/d + 4; break; }
+      h/=6; return Math.round(h*360);
+    }
+
+    // ——— Render ———
+    function renderResults(names, form){
+      const grid = $('#grid');
+      grid.innerHTML = '';
+      names.forEach(n=> grid.appendChild(nameCard(n, form)));
+      setCount(names.length);
+      renderFavs();
+      const params=new URLSearchParams(location.search);
+      params.set('species',form.species);
+      params.set('age',form.ageMonths);
+      params.set('sex',form.sex);
+      if(form.styles.length) params.set('styles', form.styles.join(','));
+      if(form.traits.length) params.set('traits', form.traits.join(','));
+      history.replaceState({},'',`${location.pathname}?${params.toString()}`);
+    }
+
+    function nameCard(name, form){
+      const card=document.createElement('div');
+      card.className='card';
+      const left=document.createElement('div');
+      left.innerHTML = `<div class="name">${escapeHtml(name)}</div><div class="sub">${emojiFor(form.species)} ${escapeHtml(displaySpecies(form.species))} • ${humanAge(form.ageMonths)} • ${escapeHtml(displaySex(form.sex))}</div>`;
+      const tools=document.createElement('div');
+      tools.className='tools';
+      const btnCopy=iconButton('📋',state.labels.toolCopy||'Copy');
+      btnCopy.addEventListener('click',()=>{ navigator.clipboard.writeText(name); toast(); });
+      const btnFav=iconButton(isFav(name)?'★':'☆',state.labels.toolFav||'Favorite');
+      btnFav.addEventListener('click',()=>{ toggleFav(name); btnFav.textContent=isFav(name)?'★':'☆'; renderFavs(); });
+      const btnCard=iconButton('🖼️',state.labels.toolCard||'Card');
+      btnCard.addEventListener('click',()=>{ downloadCard(name); });
+      tools.append(btnCopy,btnFav,btnCard);
+      card.append(left, tools);
+      return card;
+    }
 
     function iconButton(txt,title){ const b=document.createElement('button'); b.className='iconbtn'; b.textContent=txt; b.title=title; return b; }
     function emojiFor(species){ return { chien:'🐶', chat:'🐱', oiseau:'🐦', lapin:'🐰', cheval:'🐴', reptile:'🦎', rongeur:'🐭', poisson:'🐟', autre:'✨' }[species] || '🐾'; }
-    function displaySpecies(val){ const map = I18N[state.lang]?.species || {}; return map[val] ? map[val].replace(/^\p{Emoji_Presentation}\s*/u,'') : val; }
-    function displaySex(val){ return (I18N[state.lang]?.sex||{})[val] || val; }
-    function humanAge(months){ if(months<12) return (I18N[state.lang]?.ageMonths||((n)=>n+' months'))(months); const y=(Math.round((months/12)*10)/10); return (I18N[state.lang]?.ageYears||((yy)=>yy+' years'))(y); }
-    function escapeHtml(s){ return s.replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;","~":"&gt;","\"":"&quot;","'":"&#039;"}[c])); }
+    function displaySpecies(val){ const map = I18N.en.species || {}; return map[val] ? map[val].replace(/^\p{Emoji_Presentation}\s*/u,'') : val; }
+    function displaySex(val){ return (I18N.en.sex||{})[val] || val; }
+    function humanAge(months){ if(months<12) return I18N.en.ageMonths(months); const y=(Math.round((months/12)*10)/10); return I18N.en.ageYears(y); }
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c])); }
 
+    // ——— Favs ———
     function isFav(n){ return state.favorites.includes(n); }
     function toggleFav(n){ const i=state.favorites.indexOf(n); if(i>=0) state.favorites.splice(i,1); else state.favorites.push(n); persistFavs(); }
     function persistFavs(){ localStorage.setItem('petname.favs', JSON.stringify(state.favorites)); }
@@ -371,66 +618,61 @@
     document.addEventListener('click',(e)=>{ const a=e.target.closest('#exportFavs'); if(a){ e.preventDefault(); const blob=new Blob([state.favorites.join('\n')],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a2=document.createElement('a'); a2.href=url; a2.download='favorites.txt'; a2.click(); URL.revokeObjectURL(url); }});
     $('#share')?.addEventListener('click',(e)=>{ e.preventDefault(); navigator.clipboard.writeText(location.href).then(()=>toast('Copied ✔')); });
 
-    function downloadCard(name){ const canvas=document.createElement('canvas'); const w=900,h=500; canvas.width=w; canvas.height=h; const ctx=canvas.getContext('2d'); const grad=ctx.createLinearGradient(0,0,w,h); grad.addColorStop(0,'#0d1530'); grad.addColorStop(1,'#0b1126'); ctx.fillStyle=grad; ctx.fillRect(0,0,w,h); if(state.image){ const img=new Image(); img.onload=()=>{ drawCard(ctx,w,h,img,name); save(); }; img.src=state.image; } else { drawCard(ctx,w,h,null,name); save(); } function save(){ const a=document.createElement('a'); a.download=`${name}.png`; a.href=canvas.toDataURL('image/png'); a.click(); } }
-    function drawCard(ctx,w,h,img,name){ if(img){ const r=180; const x=w-220, y=140; roundImage(ctx,img,x,y,r); } ctx.fillStyle='#fff'; ctx.font='700 72px Inter, sans-serif'; ctx.fillText(name,60,200); ctx.font='400 22px Inter, sans-serif'; ctx.fillStyle='rgba(255,255,255,.8)'; ctx.fillText((I18N[state.lang]?.cardSubtitle)||'Suggested name for your companion',60,240); ctx.font='400 16px Inter, sans-serif'; ctx.fillStyle='rgba(255,255,255,.55)'; ctx.fillText((I18N[state.lang]?.cardFooter)||'petnames.one — offline, no image upload',60,280); }
-    function roundImage(ctx,img,x,y,r){ ctx.save(); ctx.beginPath(); ctx.arc(x+r,y+r,r,0,Math.PI*2); ctx.closePath(); ctx.clip(); const size=Math.min(img.width,img.height); ctx.drawImage(img,(img.width-size)/2,(img.height-size)/2,size,size,x,y,r*2,r*2); ctx.restore(); }
+    // ——— Image card ———
+    function downloadCard(name){
+      const canvas=document.createElement('canvas');
+      const w=900,h=500; canvas.width=w; canvas.height=h;
+      const ctx=canvas.getContext('2d');
+      const grad=ctx.createLinearGradient(0,0,w,h); grad.addColorStop(0,'#0d1530'); grad.addColorStop(1,'#0b1126'); ctx.fillStyle=grad; ctx.fillRect(0,0,w,h);
+      if(state.image){ const img=new Image(); img.onload=()=>{ drawCard(ctx,w,h,img,name); save(); }; img.src=state.image; }
+      else { drawCard(ctx,w,h,null,name); save(); }
+      function save(){ const a=document.createElement('a'); a.download=`${name}.png`; a.href=canvas.toDataURL('image/png'); a.click(); }
+    }
+    function drawCard(ctx,w,h,img,name){
+      if(img){ const r=180; const x=w-220, y=140; roundImage(ctx,img,x,y,r); }
+      ctx.fillStyle='#fff'; ctx.font='700 72px Inter, sans-serif'; ctx.fillText(name,60,200);
+      ctx.font='400 22px Inter, sans-serif'; ctx.fillStyle='rgba(255,255,255,.8)'; ctx.fillText(I18N.en.cardSubtitle,60,240);
+      ctx.font='400 16px Inter, sans-serif'; ctx.fillStyle='rgba(255,255,255,.55)'; ctx.fillText(I18N.en.cardFooter,60,280);
+    }
+    function roundImage(ctx,img,x,y,r){
+      ctx.save(); ctx.beginPath(); ctx.arc(x+r,y+r,r,0,Math.PI*2); ctx.closePath(); ctx.clip();
+      const size=Math.min(img.width,img.height);
+      ctx.drawImage(img,(img.width-size)/2,(img.height-size)/2,size,size,x,y,r*2,r*2);
+      ctx.restore();
+    }
+
     function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
     function shuffle(arr){ return arr.map(a=>[Math.random(),a]).sort((a,b)=>a[0]-b[0]).map(a=>a[1]); }
 
-    // Init
+    // ——— Init ———
     document.addEventListener('DOMContentLoaded', ()=>{
-      $('#year').textContent=new Date().getFullYear();
+      $('#year').textContent = new Date().getFullYear();
       renderFavs();
-      // Langue de ce dossier
-      applyI18n('en');
-      // Hydrate depuis l'URL si présent
+
+      // Hydrate depuis l’URL
       const q=new URLSearchParams(location.search);
       if(q.get('species')) $('#species').value=q.get('species');
       if(q.get('age')){ const m=Number(q.get('age')); if(m>=12){ $('#age').value=(m/12).toFixed(1); $('#ageUnit').value='years'; } else { $('#age').value=m; $('#ageUnit').value='months'; } }
       if(q.get('sex')) $('#sex').value=q.get('sex');
       if(q.get('styles')) q.get('styles').split(',').forEach(s=>{ const c=$(`#styles .chip[data-style="${CSS.escape(s)}"]`); c && c.classList.add('active'); });
       if(q.get('traits')) q.get('traits').split(',').forEach(t=>{ const c=$(`#traits .chip[data-trait="${CSS.escape(t)}"]`); c && c.classList.add('active'); });
-      // Le change de langue est géré plus bas (navigation par dossier)
-      $('#lang').value='en';
+
+      // sélecteur de langue -> navigation par dossier
+      document.querySelector('#lang').addEventListener('change', (e)=>{
+        const SUPPORTED = ["fr","en","de","es","zh","hi","ar","bn"];
+        let next = String(e.target.value).toLowerCase();
+        if(!SUPPORTED.includes(next)) next = 'en';
+        const keepKeys = ["species","age","sex","styles","traits"];
+        const kept = new URLSearchParams();
+        keepKeys.forEach(k=>{ if(q.has(k)) kept.set(k,q.get(k)); });
+        const qs = kept.toString();
+        // calcule la racine du projet (ex: /petnames/)
+        const parts = location.pathname.split("/").filter(Boolean);
+        if(parts.length >= 2) parts.pop(); // retire 'en'
+        const root = "/" + parts.join("/") + "/";
+        location.href = root + next + "/" + (qs? ("?"+qs) : "");
+      });
     });
   </script>
-
-  <!-- insérer code : switcher de langue (naviguer par dossier) -->
-  <script>
-    (function(){
-      const SUPPORTED_LANGS = ["fr","en","de","es","zh","hi","ar","bn"];
-
-      function projectRoot(){
-        const parts = location.pathname.split("/");
-        if(parts[parts.length-1] === "") parts.pop();
-        const last = (parts[parts.length-1]||"").toLowerCase();
-        if (SUPPORTED_LANGS.includes(last)) parts.pop();
-        let root = parts.join("/");
-        if(root === "") root = "/";
-        if(!root.endsWith("/")) root += "/";
-        return root; // ex: "/petnames/"
-      }
-
-      function buildLangUrl(nextLang){
-        if(!SUPPORTED_LANGS.includes(nextLang)) nextLang = "en";
-        const keepKeys = ["species","age","sex","styles","traits"]; // retire ces lignes pour ne conserver aucun paramètre
-        const src = new URLSearchParams(location.search);
-        const kept = new URLSearchParams();
-        keepKeys.forEach(k=>{ if(src.has(k)) kept.set(k, src.get(k)); });
-        const qs = kept.toString();
-        return projectRoot() + nextLang + "/" + (qs? ("?"+qs) : "");
-      }
-
-      document.addEventListener("DOMContentLoaded", ()=>{
-        const sel = document.querySelector("#lang, #language, select[name='lang']");
-        if(!sel) return;
-        sel.addEventListener("change", (e)=>{
-          const url = buildLangUrl(String(e.target.value).toLowerCase());
-          location.href = url;
-        });
-      });
-    })();
-  </script>
-  <!-- /insérer code -->
 </body>
 </html>
