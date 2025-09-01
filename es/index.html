@@ -1,47 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="rtl">
 <head>
-<!-- insérer code : Consent Mode v2 (par défaut, EEA/UK/CH) -->
+  <!-- insérer code : Consent Mode v2 (par défaut, EEA/UK/CH) -->
+  <script>
+    (function(){
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],
+        wait_for_update: 500
+      });
+      gtag('set','ads_data_redaction',true);
+    })();
+  </script>
+  <!-- /insérer code -->
 
-<script>
-  (function(){
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'denied',
-      functionality_storage: 'granted',
-      security_storage: 'granted',
-      region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],
-      wait_for_update: 500
-    });
-    gtag('set','ads_data_redaction',true);
-  })();
-</script>
+  <!-- insérer code : Google CMP (Funding Choices) -->
+  <!-- ⚠️ COLLE ICI le snippet EXACT que Google te fournit (2 <script>) -->
+  <!-- /insérer code -->
 
-<!-- /insérer code -->
+  <!-- insérer code : AdSense global (Auto ads) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9411950027978678" crossorigin="anonymous"></script>
+  <!-- /insérer code -->
 
-<!-- insérer code : Google CMP (Funding Choices) -->
-
-<!-- ⚠️ COLLE ICI le snippet EXACT que Google te fournit (2 <script>)
-Exemple de forme (NE PAS COPIER tel quel) :
-<script async src="https://fundingchoicesmessages.google.com/i/pub-9411950027978678?ers=1" nonce="..."></script>
-<script>(function(){function signalGooglefcPresent(){if(!window.frames['googlefcPresent']){if(document.body){const f=document.createElement('iframe');f.style.cssText='width:0;height:0;border:0;display:none';f.name='googlefcPresent';document.body.appendChild(f);}else{setTimeout(signalGooglefcPresent,50);}}} signalGooglefcPresent();})();</script>
--->
-
-<!-- /insérer code -->
-
-<!-- insérer code : AdSense global (Auto ads) -->
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9411950027978678" crossorigin="anonymous"></script>
-
-<!-- /insérer code -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title id="metaTitle">Pet names — tailored</title>
-  <meta id="metaDesc" name="description" content="A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in‑browser." />
+  <meta id="metaDesc" name="description" content="A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in-browser." />
   <meta name="theme-color" content="#0f172a" />
 
   <!-- insérer code : canonical (URL exacte de CETTE page) -->
@@ -50,7 +41,7 @@ Exemple de forme (NE PAS COPIER tel quel) :
 
   <!-- insérer code : HREFLANG pour toutes les langues (Project site) -->
   <link rel="alternate" href="https://nix177.github.io/petnames/" hreflang="x-default" />
-  <link rel="alternate" href="https://nix177.github.io/petnames/" hreflang="fr" />
+  <link rel="alternate" href="https://nix177.github.io/petnames/fr/" hreflang="fr" />
   <link rel="alternate" href="https://nix177.github.io/petnames/en/" hreflang="en" />
   <link rel="alternate" href="https://nix177.github.io/petnames/de/" hreflang="de" />
   <link rel="alternate" href="https://nix177.github.io/petnames/es/" hreflang="es" />
@@ -69,10 +60,6 @@ Exemple de forme (NE PAS COPIER tel quel) :
       document.documentElement.dir = (['ar'].includes(THIS_LANG) ? 'rtl' : 'ltr');
     })();
   </script>
-  <!-- /insérer code -->
-
-  <!-- insérer code : Google AdSense global (Publisher ID rempli) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9411950027978678" crossorigin="anonymous"></script>
   <!-- /insérer code -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,22 +131,24 @@ Exemple de forme (NE PAS COPIER tel quel) :
           <div class="tag" id="appTag">Generates ideas based on species, age, and photo (optional)</div>
         </div>
       </div>
+
       <div class="langpick">
         <label for="lang" class="small" id="labelLang">Language</label>
         <select id="lang" aria-label="Choose language">
           <option value="fr">FR</option>
-          <option value="en" selected>EN</option>
+          <option value="en">EN</option>
           <option value="de">DE</option>
           <option value="es">ES</option>
           <option value="zh">中文</option>
           <option value="hi">HI</option>
-          <option value="ar">AR</option>
+          <option value="ar" selected>AR</option>
           <option value="bn">BN</option>
         </select>
       </div>
+
       <div style="min-width:180px;flex:0 0 180px">
         <div style="margin-top:18px">
-          <!-- insérer code : bloc pub dans l’en‑tête (remplace data-ad-slot) -->
+          <!-- insérer code : bloc pub dans l’en-tête (remplace data-ad-slot) -->
           <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-9411950027978678"
@@ -282,10 +271,10 @@ Exemple de forme (NE PAS COPIER tel quel) :
   <div class="toast" id="toast">Copied ✔</div>
 
   <script>
-    // i18n (subset used; full dict available if needed)
+    // i18n minimal (EN, FR) — fallback EN si langue inconnue
     const I18N = {
-      en: { dir:'ltr', metaTitle:'Pet names — tailored', metaDesc:'A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in‑browser.', appTitle:'Pet names — tailored', appTag:'Generates ideas based on species, age, and photo (optional)', labelLang:'Language', labelSpecies:'Species', species:{ chien:'🐶 Dog', chat:'🐱 Cat', oiseau:'🐦 Bird', lapin:'🐰 Rabbit', cheval:'🐴 Horse', reptile:'🦎 Reptile', rongeur:'🐭 Rodent', poisson:'🐟 Fish', autre:'✨ Other' }, labelAge:'Age', agePlaceholder:'e.g. 2', unitYears:'years', unitMonths:'months', labelSex:'Sex (optional)', sex:{ inconnu:'Unknown', femelle:'Female', 'mâle':'Male' }, labelStyles:'Name style (optional)', styles:{ mignon:'Cute', classique:'Classic', nature:'Nature', mythologique:'Mythologic', fantaisie:'Fantasy', court:'Short (≤2 syl.)' }, labelTraits:'Personality (optional)', traits:{ joueur:'Playful', calme:'Calm', curieux:'Curious', brave:'Brave', malin:'Clever', doux:'Gentle', royal:'Regal', sage:'Wise' }, labelPhoto:'Pet photo (optional)', photoDrop:'Drop an image here', photoOr:'or', photoClick:'click to choose', photoHint:'The image is not uploaded — it stays on your device. Dominant colors help refine ideas.', btnGenerate:'Generate names', btnRandomize:'Randomize', btnClear:'Reset', suggestionsTitle:'Suggestions', favoritesTitle:'Favorites', footerLeftPrefix:'©', footerLeftText:'— Tiny static app. Images stay local.', exportFavs:'Export favorites', share:'Share this setup', toastCopied:'Copied ✔', toolCopy:'Copy', toolFav:'Favorite', toolCard:'Card', cardSubtitle:'Suggested name for your companion', cardFooter:'petnames.one — offline, no image upload', ageMonths:(n)=> n+" months", ageYears:(y)=> y+" years" },
-      fr: { dir:'ltr', metaTitle:"Prénoms d’animaux — sur‑mesure", metaDesc:"Un petit outil qui propose des prénoms pour votre animal en fonction de son espèce, de son âge et (facultatif) d’une photo. 100% côté navigateur.", appTitle:"Prénoms d’animaux — sur‑mesure", appTag:"Génère des idées adaptées à l’espèce, l’âge et la photo (facultatif)", labelLang:'Langue', labelSpecies:'Espèce', species:{ chien:'🐶 Chien', chat:'🐱 Chat', oiseau:'🐦 Oiseau', lapin:'🐰 Lapin', cheval:'🐴 Cheval', reptile:'🦎 Reptile', rongeur:'🐭 Rongeur', poisson:'🐟 Poisson', autre:'✨ Autre' }, labelAge:'Âge', agePlaceholder:'ex. 2', unitYears:'années', unitMonths:'mois', labelSex:'Sexe (optionnel)', sex:{ inconnu:'Inconnu', femelle:'Femelle', 'mâle':'Mâle' }, labelStyles:'Style des noms (optionnel)', styles:{ mignon:'Mignon', classique:'Classique', nature:'Nature', mythologique:'Mythologique', fantaisie:'Fantaisie', court:'Court (≤2 syll.)' }, labelTraits:'Traits de personnalité (optionnel)', traits:{ joueur:'Joueur·se', calme:'Calme', curieux:'Curieux·se', brave:'Brave', malin:'Malin·e', doux:'Doux·ce', royal:'Royal·e', sage:'Sage' }, labelPhoto:"Photo de l’animal (optionnel)", photoDrop:"Déposez une image ici", photoOr:"ou", photoClick:"cliquez pour choisir", photoHint:"L’image n’est pas envoyée — elle reste dans votre navigateur. Les couleurs dominantes aident à affiner les idées.", btnGenerate:'Générer des prénoms', btnRandomize:'Remplir au hasard', btnClear:'Réinitialiser', suggestionsTitle:'Suggestions', favoritesTitle:'Favoris', footerLeftPrefix:'©', footerLeftText:'— Petite app statique. Les images restent locales.', exportFavs:'Exporter les favoris', share:'Partager cette configuration', toastCopied:'Copié ✔', toolCopy:'Copier', toolFav:'Favori', toolCard:'Carte', cardSubtitle:'Prénom proposé pour votre compagnon', cardFooter:'petnames.one — hors‑ligne, sans envoi d’image', ageMonths:(n)=> n+" mois", ageYears:(y)=> y+" ans" }
+      en: { dir:'ltr', metaTitle:'Pet names — tailored', metaDesc:'A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in-browser.', appTitle:'Pet names — tailored', appTag:'Generates ideas based on species, age, and photo (optional)', labelLang:'Language', labelSpecies:'Species', species:{ chien:'🐶 Dog', chat:'🐱 Cat', oiseau:'🐦 Bird', lapin:'🐰 Rabbit', cheval:'🐴 Horse', reptile:'🦎 Reptile', rongeur:'🐭 Rodent', poisson:'🐟 Fish', autre:'✨ Other' }, labelAge:'Age', agePlaceholder:'e.g. 2', unitYears:'years', unitMonths:'months', labelSex:'Sex (optional)', sex:{ inconnu:'Unknown', femelle:'Female', 'mâle':'Male' }, labelStyles:'Name style (optional)', styles:{ mignon:'Cute', classique:'Classic', nature:'Nature', mythologique:'Mythologic', fantaisie:'Fantasy', court:'Short (≤2 syl.)' }, labelTraits:'Personality (optional)', traits:{ joueur:'Playful', calme:'Calm', curieux:'Curious', brave:'Brave', malin:'Clever', doux:'Gentle', royal:'Regal', sage:'Wise' }, labelPhoto:'Pet photo (optional)', photoDrop:'Drop an image here', photoOr:'or', photoClick:'click to choose', photoHint:'The image is not uploaded — it stays on your device. Dominant colors help refine ideas.', btnGenerate:'Generate names', btnRandomize:'Randomize', btnClear:'Reset', suggestionsTitle:'Suggestions', favoritesTitle:'Favorites', footerLeftPrefix:'©', footerLeftText:'— Tiny static app. Images stay local.', exportFavs:'Export favorites', share:'Share this setup', toastCopied:'Copied ✔', toolCopy:'Copy', toolFav:'Favorite', toolCard:'Card', cardSubtitle:'Suggested name for your companion', cardFooter:'petnames.one — offline, no image upload', ageMonths:(n)=> n+" months", ageYears:(y)=> y+" years" },
+      fr: { dir:'ltr', metaTitle:"Prénoms d’animaux — sur-mesure", metaDesc:"Un petit outil qui propose des prénoms pour votre animal en fonction de son espèce, de son âge et (facultatif) d’une photo. 100% côté navigateur.", appTitle:"Prénoms d’animaux — sur-mesure", appTag:"Génère des idées adaptées à l’espèce, l’âge et la photo (facultatif)", labelLang:'Langue', labelSpecies:'Espèce', species:{ chien:'🐶 Chien', chat:'🐱 Chat', oiseau:'🐦 Oiseau', lapin:'🐰 Lapin', cheval:'🐴 Cheval', reptile:'🦎 Reptile', rongeur:'🐭 Rongeur', poisson:'🐟 Poisson', autre:'✨ Autre' }, labelAge:'Âge', agePlaceholder:'ex. 2', unitYears:'années', unitMonths:'mois', labelSex:'Sexe (optionnel)', sex:{ inconnu:'Inconnu', femelle:'Femelle', 'mâle':'Mâle' }, labelStyles:'Style des noms (optionnel)', styles:{ mignon:'Mignon', classique:'Classique', nature:'Nature', mythologique:'Mythologique', fantaisie:'Fantaisie', court:'Court (≤2 syll.)' }, labelTraits:'Traits de personnalité (optionnel)', traits:{ joueur:'Joueur·se', calme:'Calme', curieux:'Curieux·se', brave:'Brave', malin:'Malin·e', doux:'Doux·ce', royal:'Royal·e', sage:'Sage' }, labelPhoto:"Photo de l’animal (optionnel)", photoDrop:"Déposez une image ici", photoOr:"ou", photoClick:"cliquez pour choisir", photoHint:"L’image n’est pas envoyée — elle reste dans votre navigateur. Les couleurs dominantes aident à affiner les idées.", btnGenerate:'Générer des prénoms', btnRandomize:'Remplir au hasard', btnClear:'Réinitialiser', suggestionsTitle:'Suggestions', favoritesTitle:'Favoris', footerLeftPrefix:'©', footerLeftText:'— Petite app statique. Les images restent locales.', exportFavs:'Exporter les favoris', share:'Partager cette configuration', toastCopied:'Copié ✔', toolCopy:'Copier', toolFav:'Favori', toolCard:'Carte', cardSubtitle:'Prénom proposé pour votre compagnon', cardFooter:'petnames.one — hors-ligne, sans envoi d’image', ageMonths:(n)=> n+" mois", ageYears:(y)=> y+" ans" }
     };
 
     const CONFIG = { apiEndpoint: null };
@@ -296,7 +285,7 @@ Exemple de forme (NE PAS COPIER tel quel) :
 
     function applyI18n(lang){
       state.lang = lang; state.labels = I18N[lang] || I18N.en; localStorage.setItem('petname.lang', lang);
-      document.documentElement.lang = lang; document.documentElement.dir = state.labels.dir || 'ltr';
+      document.documentElement.lang = lang; document.documentElement.dir = state.labels.dir || (lang==='ar'?'rtl':'ltr');
       $('#metaTitle').textContent = state.labels.metaTitle; document.title = state.labels.metaTitle;
       $('#metaDesc').setAttribute('content', state.labels.metaDesc);
       $('#appTitle').textContent = state.labels.appTitle; $('#appTag').textContent = state.labels.appTag; $('#labelLang').textContent = state.labels.labelLang;
@@ -309,15 +298,15 @@ Exemple de forme (NE PAS COPIER tel quel) :
       $('#labelPhoto').textContent = state.labels.labelPhoto; $('#photoDrop').textContent = state.labels.photoDrop; $('#photoOr').textContent = state.labels.photoOr; $('#photoClick').textContent = state.labels.photoClick; $('#photoHint').textContent = state.labels.photoHint;
       $('#generate').textContent = state.labels.btnGenerate; $('#randomize').textContent = state.labels.btnRandomize; $('#clear').textContent = state.labels.btnClear;
       $('#suggestionsTitle').textContent = state.labels.suggestionsTitle; $('#favoritesTitle').textContent = state.labels.favoritesTitle; $('#toast').textContent = state.labels.toastCopied;
-      $('#footerLeft').innerHTML = `${state.labels.footerLeftPrefix} <span id="year"></span> ${state.labels.footerLeftText} <a href="#" id="exportFavs">${state.labels.exportFavs}</a>`; $('#year').textContent = new Date().getFullYear();
+      $('#footerLeft').innerHTML = `${state.labels.footerLeftPrefix||'©'} <span id="year"></span> ${state.labels.footerLeftText||'— Tiny static app. Images stay local.'} <a href="#" id="exportFavs">${state.labels.exportFavs||'Export favorites'}</a>`; $('#year').textContent = new Date().getFullYear();
       document.addEventListener('click', handleExportFavsOnce, { once:true });
       if(state.lastResults.length && state.lastForm){ renderResults(state.lastResults, state.lastForm); }
-      const q = new URLSearchParams(location.search); q.set('lang', lang); history.replaceState({},'',`${location.pathname}?${q.toString()}`);
+      // (Plus de ?lang= dans l'URL ; on navigue par dossier via le switcher ci-dessous)
     }
 
     function handleExportFavsOnce(e){ const a=e.target.closest('#exportFavs'); if(a){ e.preventDefault(); const blob=new Blob([state.favorites.join('\n')],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a2=document.createElement('a'); a2.href=url; a2.download='favorites.txt'; a2.click(); URL.revokeObjectURL(url); }}
 
-    const toast = (msg)=>{ const t=$('#toast'); t.textContent = msg || state.labels.toastCopied; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); };
+    const toast = (msg)=>{ const t=$('#toast'); t.textContent = msg || state.labels.toastCopied || 'Copied ✔'; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); };
     const setCount = n => $('#count').textContent = String(n);
 
     function setupChips(containerSel){ const cont = $(containerSel); cont.addEventListener('click',(e)=>{ const chip=e.target.closest('.chip'); if(!chip) return; chip.classList.toggle('active'); }); }
@@ -353,14 +342,14 @@ Exemple de forme (NE PAS COPIER tel quel) :
 
     function renderResults(names, form){ const grid=$('#grid'); grid.innerHTML=''; names.forEach(n=>{ grid.appendChild(nameCard(n, form)); }); setCount(names.length); renderFavs(); const params=new URLSearchParams(location.search); params.set('species',form.species); params.set('age',form.ageMonths); params.set('sex',form.sex); if(form.styles.length) params.set('styles',form.styles.join(',')); if(form.traits.length) params.set('traits',form.traits.join(',')); params.set('lang',state.lang); history.replaceState({},'',`${location.pathname}?${params.toString()}`); }
 
-    function nameCard(name, form){ const card=document.createElement('div'); card.className='card'; const left=document.createElement('div'); left.innerHTML = `<div class=\"name\">${escapeHtml(name)}</div><div class=\"sub\">${emojiFor(form.species)} ${escapeHtml(displaySpecies(form.species))} • ${humanAge(form.ageMonths)} • ${escapeHtml(displaySex(form.sex))}</div>`; const tools=document.createElement('div'); tools.className='tools'; const btnCopy=iconButton('📋',state.labels.toolCopy||'Copy'); btnCopy.addEventListener('click',()=>{ navigator.clipboard.writeText(name); toast(); }); const btnFav=iconButton(isFav(name)?'★':'☆',state.labels.toolFav||'Favorite'); btnFav.addEventListener('click',()=>{ toggleFav(name); btnFav.textContent=isFav(name)?'★':'☆'; renderFavs(); }); const btnCard=iconButton('🖼️',state.labels.toolCard||'Card'); btnCard.addEventListener('click',()=>{ downloadCard(name); }); tools.append(btnCopy,btnFav,btnCard); card.append(left, tools); return card; }
+    function nameCard(name, form){ const card=document.createElement('div'); card.className='card'; const left=document.createElement('div'); left.innerHTML = `<div class="name">${escapeHtml(name)}</div><div class="sub">${emojiFor(form.species)} ${escapeHtml(displaySpecies(form.species))} • ${humanAge(form.ageMonths)} • ${escapeHtml(displaySex(form.sex))}</div>`; const tools=document.createElement('div'); tools.className='tools'; const btnCopy=iconButton('📋',state.labels.toolCopy||'Copy'); btnCopy.addEventListener('click',()=>{ navigator.clipboard.writeText(name); toast(); }); const btnFav=iconButton(isFav(name)?'★':'☆',state.labels.toolFav||'Favorite'); btnFav.addEventListener('click',()=>{ toggleFav(name); btnFav.textContent=isFav(name)?'★':'☆'; renderFavs(); }); const btnCard=iconButton('🖼️',state.labels.toolCard||'Card'); btnCard.addEventListener('click',()=>{ downloadCard(name); }); tools.append(btnCopy,btnFav,btnCard); card.append(left, tools); return card; }
 
     function iconButton(txt,title){ const b=document.createElement('button'); b.className='iconbtn'; b.textContent=txt; b.title=title; return b; }
     function emojiFor(species){ return { chien:'🐶', chat:'🐱', oiseau:'🐦', lapin:'🐰', cheval:'🐴', reptile:'🦎', rongeur:'🐭', poisson:'🐟', autre:'✨' }[species] || '🐾'; }
     function displaySpecies(val){ const map = I18N[state.lang]?.species || {}; return map[val] ? map[val].replace(/^\p{Emoji_Presentation}\s*/u,'') : val; }
     function displaySex(val){ return (I18N[state.lang]?.sex||{})[val] || val; }
     function humanAge(months){ if(months<12) return (I18N[state.lang]?.ageMonths||((n)=>n+' months'))(months); const y=(Math.round((months/12)*10)/10); return (I18N[state.lang]?.ageYears||((yy)=>yy+' years'))(y); }
-    function escapeHtml(s){ return s.replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c])); }
+    function escapeHtml(s){ return s.replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;","~":"&gt;","\"":"&quot;","'":"&#039;"}[c])); }
 
     function isFav(n){ return state.favorites.includes(n); }
     function toggleFav(n){ const i=state.favorites.indexOf(n); if(i>=0) state.favorites.splice(i,1); else state.favorites.push(n); persistFavs(); }
@@ -375,19 +364,60 @@ Exemple de forme (NE PAS COPIER tel quel) :
     function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
     function shuffle(arr){ return arr.map(a=>[Math.random(),a]).sort((a,b)=>a[0]-b[0]).map(a=>a[1]); }
 
+    // Init
     document.addEventListener('DOMContentLoaded', ()=>{
-      $('#year').textContent=new Date().getFullYear(); renderFavs();
-      // Force EN for this folder regardless of previous preference
-      applyI18n('en');
+      $('#year').textContent=new Date().getFullYear();
+      renderFavs();
+      // Langue de ce dossier
+      applyI18n('es');
+      // Hydrate depuis l'URL si présent
       const q=new URLSearchParams(location.search);
       if(q.get('species')) $('#species').value=q.get('species');
       if(q.get('age')){ const m=Number(q.get('age')); if(m>=12){ $('#age').value=(m/12).toFixed(1); $('#ageUnit').value='years'; } else { $('#age').value=m; $('#ageUnit').value='months'; } }
       if(q.get('sex')) $('#sex').value=q.get('sex');
       if(q.get('styles')) q.get('styles').split(',').forEach(s=>{ const c=$(`#styles .chip[data-style="${CSS.escape(s)}"]`); c && c.classList.add('active'); });
       if(q.get('traits')) q.get('traits').split(',').forEach(t=>{ const c=$(`#traits .chip[data-trait="${CSS.escape(t)}"]`); c && c.classList.add('active'); });
-      $('#lang').value='en';
-      $('#lang').addEventListener('change',(e)=> applyI18n(e.target.value));
+      // Le change de langue est géré plus bas (navigation par dossier)
+      $('#lang').value='es';
     });
   </script>
+
+  <!-- insérer code : switcher de langue (naviguer par dossier) -->
+  <script>
+    (function(){
+      const SUPPORTED_LANGS = ["fr","en","de","es","zh","hi","ar","bn"];
+
+      function projectRoot(){
+        const parts = location.pathname.split("/");
+        if(parts[parts.length-1] === "") parts.pop();
+        const last = (parts[parts.length-1]||"").toLowerCase();
+        if (SUPPORTED_LANGS.includes(last)) parts.pop();
+        let root = parts.join("/");
+        if(root === "") root = "/";
+        if(!root.endsWith("/")) root += "/";
+        return root; // ex: "/petnames/"
+      }
+
+      function buildLangUrl(nextLang){
+        if(!SUPPORTED_LANGS.includes(nextLang)) nextLang = "en";
+        const keepKeys = ["species","age","sex","styles","traits"]; // retire ces lignes pour ne conserver aucun paramètre
+        const src = new URLSearchParams(location.search);
+        const kept = new URLSearchParams();
+        keepKeys.forEach(k=>{ if(src.has(k)) kept.set(k, src.get(k)); });
+        const qs = kept.toString();
+        return projectRoot() + nextLang + "/" + (qs? ("?"+qs) : "");
+      }
+
+      document.addEventListener("DOMContentLoaded", ()=>{
+        const sel = document.querySelector("#lang, #language, select[name='lang']");
+        if(!sel) return;
+        sel.addEventListener("change", (e)=>{
+          const url = buildLangUrl(String(e.target.value).toLowerCase());
+          location.href = url;
+        });
+      });
+    })();
+  </script>
+  <!-- /insérer code -->
 </body>
 </html>
