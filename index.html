@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prénoms d’animaux — sur‑mesure</title>
+  <meta name="description" content="Un petit outil qui propose des prénoms pour votre animal en fonction de son espèce, de son âge et (facultatif) d’une photo. 100% côté navigateur." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020; /* deep slate */
+      --panel: #121a2e;
+      --muted: #aab2c8;
+      --text: #e6ecff;
+      --accent: #76e0c2;
+      --accent-2:#9fb6ff;
+      --ring: rgba(118,224,194,.5);
+      --danger: #ff7a7a;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#0a0f20, #0b1226 35%, #0a0f20);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:var(--accent-2)}
+    .wrap{max-width:980px;margin-inline:auto;padding:24px}
+    header{display:flex;align-items:center;gap:16px;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 140deg, #76e0c2, #9fb6ff, #76e0c2); box-shadow:0 0 0 2px rgba(255,255,255,.06) inset, 0 10px 30px rgba(0,0,0,.35)}
+    h1{font-size:clamp(20px,3.5vw,28px);margin:0;font-weight:700;letter-spacing:.2px}
+    .tag{font-size:12px;color:#c6d2ff;background:#0f1830;border:1px solid rgba(255,255,255,.08);padding:4px 8px;border-radius:999px}
+    main{margin-top:20px;display:grid;grid-template-columns:1.05fr 1fr;gap:20px}
+    @media (max-width:970px){main{grid-template-columns:1fr;}}
+    .panel{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.0)); border:1px solid rgba(255,255,255,.08); border-radius:20px; box-shadow:0 15px 40px rgba(0,0,0,.35);}
+    .pad{padding:18px}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .controls .col-span-2{grid-column:span 2}
+    @media (max-width:620px){.controls{grid-template-columns:1fr}.controls .col-span-2{grid-column:auto}}
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    select,input[type="number"],input[type="text"],.chips,.filedrop{width:100%;background:#0f1830;border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--text);padding:12px 12px;outline:none}
+    select:focus,input:focus,.filedrop:focus-within{border-color:var(--accent); box-shadow:0 0 0 4px var(--ring)}
+    .row{display:flex;gap:10px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px}
+    .chip{background:#0d1530;border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:999px;font-size:12px;cursor:pointer;user-select:none}
+    .chip.active{background:#14224a;border-color:#6fb4ff}
+    .filedrop{padding:0}
+    .filedrop .inner{display:flex;gap:12px;align-items:center;padding:12px}
+    .filedrop input{display:none}
+    .filedrop .thumb{width:52px;height:52px;border-radius:12px;background:#0d1530;display:grid;place-items:center;border:1px solid rgba(255,255,255,.08);overflow:hidden}
+    .filedrop img{max-width:100%;max-height:100%;display:block}
+    .hint{font-size:12px;color:#93a0c5;margin-top:6px}
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{background:linear-gradient(180deg,#1d2a53,#172348); border:1px solid rgba(255,255,255,.12);padding:12px 14px;border-radius:12px;color:var(--text);font-weight:600;cursor:pointer}
+    .btn.primary{background:linear-gradient(180deg,#2a3f8f,#253772);border-color:#6fb4ff}
+    .btn.ghost{background:transparent;border-color:rgba(255,255,255,.14)}
+
+    .results{padding:18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:970px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:540px){.grid{grid-template-columns:1fr}}
+    .card{background:#0f1830;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .name{font-size:18px;font-weight:700;letter-spacing:.2px}
+    .sub{font-size:12px;color:#9bb0e0}
+    .card .tools{display:flex;gap:8px}
+    .iconbtn{border:1px solid rgba(255,255,255,.14);background:#0d1530;border-radius:10px;padding:8px;cursor:pointer}
+
+    .favorites{display:flex;gap:8px;flex-wrap:wrap}
+    .fav{background:#0d1530;border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:999px;font-size:12px}
+
+    footer{margin-top:26px;font-size:12px;color:#8ea0d2;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .small{font-size:12px;color:#90a0c7}
+
+    /* Ad placeholders */
+    .ad{background:repeating-linear-gradient(45deg, rgba(255,255,255,.06), rgba(255,255,255,.06) 10px, rgba(255,255,255,.03) 10px, rgba(255,255,255,.03) 20px); border:1px dashed rgba(255,255,255,.2); border-radius:14px; color:#bfc8df; display:grid; place-items:center; height:90px; font-size:12px}
+
+    /* toast */
+    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111b32;border:1px solid rgba(255,255,255,.14);color:var(--text);padding:10px 14px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+    .toast.show{opacity:1}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Prénoms d’animaux — sur‑mesure</h1>
+          <div class="tag">Génère des idées adaptées à l’espèce, l’âge et la photo (facultatif)</div>
+        </div>
+      </div>
+      <div style="min-width:180px;flex:0 0 180px">
+        <div class="ad">Zone pub — 180×90<br><span class="small">(remplacez par votre bloc Google Ads)</span></div>
+      </div>
+    </header>
+
+    <main class="panel">
+      <section class="pad" aria-label="Formulaire">
+        <div class="controls">
+          <div>
+            <label for="species">Espèce</label>
+            <select id="species" aria-label="Espèce">
+              <option value="chien">🐶 Chien</option>
+              <option value="chat">🐱 Chat</option>
+              <option value="oiseau">🐦 Oiseau</option>
+              <option value="lapin">🐰 Lapin</option>
+              <option value="cheval">🐴 Cheval</option>
+              <option value="reptile">🦎 Reptile</option>
+              <option value="rongeur">🐭 Rongeur</option>
+              <option value="poisson">🐟 Poisson</option>
+              <option value="autre">✨ Autre</option>
+            </select>
+          </div>
+          <div>
+            <label for="age">Âge</label>
+            <div class="row">
+              <input id="age" type="number" min="0" step="0.1" placeholder="ex. 2" aria-label="Âge"/>
+              <select id="ageUnit" aria-label="Unité âge">
+                <option value="years">années</option>
+                <option value="months">mois</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="sex">Sexe (optionnel)</label>
+            <select id="sex">
+              <option value="inconnu">Inconnu</option>
+              <option value="femelle">Femelle</option>
+              <option value="mâle">Mâle</option>
+            </select>
+          </div>
+          <div>
+            <label>Style des noms (optionnel)</label>
+            <div id="styles" class="chips" role="group" aria-label="Styles">
+              <div class="chip" data-style="mignon">Mignon</div>
+              <div class="chip" data-style="classique">Classique</div>
+              <div class="chip" data-style="nature">Nature</div>
+              <div class="chip" data-style="mythologique">Mythologique</div>
+              <div class="chip" data-style="fantaisie">Fantaisie</div>
+              <div class="chip" data-style="court">Court (≤2 syll.)</div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label>Traits de personnalité (optionnel)</label>
+            <div id="traits" class="chips" role="group" aria-label="Traits">
+              <div class="chip" data-trait="joueur">Joueur·se</div>
+              <div class="chip" data-trait="calme">Calme</div>
+              <div class="chip" data-trait="curieux">Curieux·se</div>
+              <div class="chip" data-trait="brave">Brave</div>
+              <div class="chip" data-trait="malin">Malin·e</div>
+              <div class="chip" data-trait="doux">Doux·ce</div>
+              <div class="chip" data-trait="royal">Royal·e</div>
+              <div class="chip" data-trait="sage">Sage</div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label>Photo de l’animal (optionnel)</label>
+            <div class="filedrop" id="filedrop">
+              <div class="inner">
+                <div class="thumb" id="thumb" aria-hidden="true">📷</div>
+                <div>
+                  <strong>Déposez une image ici</strong> ou <label for="file" style="text-decoration:underline;cursor:pointer">cliquez pour choisir</label>
+                  <input id="file" type="file" accept="image/*" />
+                  <div class="hint">L’image n’est pas envoyée — elle reste dans votre navigateur. Les couleurs dominantes aident à affiner les idées.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="generate">Générer des prénoms</button>
+          <button class="btn ghost" id="randomize">Remplir au hasard</button>
+          <button class="btn ghost" id="clear">Réinitialiser</button>
+        </div>
+      </section>
+
+      <section class="results" aria-live="polite">
+        <div style="margin-bottom:10px" class="small">Suggestions (<span id="count">0</span>)</div>
+        <div class="grid" id="grid"></div>
+        <div style="margin-top:14px" class="small">Favoris</div>
+        <div class="favorites" id="favorites"></div>
+        <div style="margin-top:18px">
+          <div class="ad">Zone pub — 728×90</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> — Petite app statique. Les images restent locales. <a href="#" id="exportFavs">Exporter les favoris</a></div>
+      <div>
+        <a href="#" id="share">Partager cette configuration</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Copié ✔</div>
+
+  <!--
+    🧩 Intégration Google Ads (à faire de votre côté)
+    1) Ajoutez le script Auto Ads dans <head> fourni par Google AdSense.
+    2) Remplacez les div.ad par vos <ins class="adsbygoogle" ...></ins> + (adsbygoogle = window.adsbygoogle || []).push({});
+    3) GitHub Pages fonctionne très bien pour héberger cette page statique.
+  -->
+
+  <script>
+    // ——— Configuration (optionnelle) ———
+    const CONFIG = {
+      // Si vous disposez d’un endpoint qui renvoie { names: string[] }
+      // en POST JSON {species, ageMonths, sex, styles[], traits[], colorHints[]}
+      // indiquez-le ici. Sinon, la génération locale est utilisée.
+      apiEndpoint: null,
+    };
+
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+    const state = {
+      image: null, // DataURL
+      imageColors: [], // ["ambre","noisette", ...]
+      favorites: JSON.parse(localStorage.getItem('petname.favs')||'[]'),
+    };
+
+    // ——— UI helpers ———
+    const toast = (msg='Copié ✔') => { const t=$('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 1200); };
+    const setCount = n => $('#count').textContent = String(n);
+
+    // ——— Chips selection ———
+    function setupChips(containerSel){
+      const cont = $(containerSel);
+      cont.addEventListener('click', (e)=>{
+        const chip = e.target.closest('.chip');
+        if(!chip) return;
+        chip.classList.toggle('active');
+      });
+    }
+    setupChips('#styles');
+    setupChips('#traits');
+
+    // ——— Drag & Drop image ———
+    const fileInput = $('#file');
+    const filedrop = $('#filedrop');
+    const thumb = $('#thumb');
+
+    function preview(file){
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        state.image = reader.result;
+        const img = new Image();
+        img.onload = () => {
+          thumb.innerHTML = '';
+          thumb.appendChild(img);
+          // extraire couleur dominante approx
+          extractDominantColors(img).then(colors=>{
+            state.imageColors = colors; // e.g., ['ambre','neige','ébène']
+          });
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    fileInput.addEventListener('change', e=> preview(e.target.files?.[0]));
+
+    ;['dragenter','dragover'].forEach(ev=>{
+      filedrop.addEventListener(ev, e=>{e.preventDefault(); filedrop.style.borderColor = '#6fb4ff';});
+    });
+    ;['dragleave','drop'].forEach(ev=>{
+      filedrop.addEventListener(ev, e=>{e.preventDefault(); filedrop.style.borderColor = 'rgba(255,255,255,.08)'});
+    });
+    filedrop.addEventListener('drop', e=>{
+      const f = e.dataTransfer.files?.[0];
+      if(f && f.type.startsWith('image/')) preview(f);
+    });
+
+    // ——— Form helpers ———
+    function getForm(){
+      const species = $('#species').value;
+      const ageVal = parseFloat($('#age').value || '0');
+      const ageMonths = $('#ageUnit').value === 'years' ? Math.round(ageVal*12) : Math.round(ageVal);
+      const sex = $('#sex').value;
+      const styles = $$('#styles .chip.active').map(c=>c.dataset.style);
+      const traits = $$('#traits .chip.active').map(c=>c.dataset.trait);
+      return { species, ageMonths, sex, styles, traits, colorHints: state.imageColors, hasImage: !!state.image };
+    }
+
+    function randomize(){
+      const speciesOpts = ['chien','chat','oiseau','lapin','cheval','reptile','rongeur','poisson','autre'];
+      $('#species').value = pick(speciesOpts);
+      $('#age').value = (Math.random()*8).toFixed(1);
+      $('#ageUnit').value = Math.random()>.5 ? 'years' : 'months';
+      $('#sex').value = pick(['inconnu','femelle','mâle']);
+      ;['#styles','#traits'].forEach(sel=>{
+        $$(sel+' .chip').forEach(c=>c.classList.remove('active'));
+        $$(sel+' .chip').filter(()=>Math.random()>.65).forEach(c=>c.classList.add('active'));
+      })
+    }
+
+    $('#randomize').addEventListener('click', ()=>{ randomize(); });
+    $('#clear').addEventListener('click', ()=>{ location.href = location.pathname; });
+
+    // ——— Generation ———
+    $('#generate').addEventListener('click', async ()=>{
+      const form = getForm();
+      const names = CONFIG.apiEndpoint ? await generateRemote(form) : generateLocal(form);
+      renderResults(names, form);
+    });
+
+    async function generateRemote(form){
+      try{
+        const res = await fetch(CONFIG.apiEndpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(form) });
+        const data = await res.json();
+        if(Array.isArray(data.names)) return data.names.slice(0,24);
+      }catch(err){ console.warn('Remote generation failed, using local.', err); }
+      return generateLocal(form);
+    }
+
+    // ——— Local name generator (heuristique, côté client) ———
+    function generateLocal({species, ageMonths, sex, styles, traits, colorHints}){
+      const pool = buildSyllablePool(species, styles);
+      const targetSyll = styles.includes('court') ? [1,2] : [1,2,2,3];
+      const ageTag = ageMonths <= 12 ? 'bébé' : ageMonths < 72 ? 'jeune' : 'adulte';
+      const vibe = [...styles, ...traits, ageTag, sex];
+      const colorNames = colorHintsToNames(colorHints);
+
+      const results = new Set();
+      let fails = 0;
+      while(results.size < 18 && fails < 200){
+        const sylCount = pick(targetSyll);
+        let name = '';
+        for(let i=0;i<sylCount;i++) name += pick(pool);
+        name = postProcess(name, species, vibe);
+        if(colorNames.length && Math.random()>0.7){ name = blend(name, pick(colorNames)); }
+        // Capitalize & validate
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        if(/^[A-Za-zÀ-ÿ\-]{3,15}$/.test(name)) results.add(name);
+        else fails++;
+      }
+
+      // Add some semantic suggestions from dictionaries
+      const themed = themedNames(species, styles, colorHints, sex);
+      themed.forEach(n=>results.add(n));
+
+      return Array.from(results).slice(0,24);
+    }
+
+    function buildSyllablePool(species, styles){
+      const base = [
+        'lo','la','li','lu','ly','no','na','ne','ni','nu','mi','ma','mo','mu','ka','ko','ki','ku','zo','za','ze','zi','zu','ru','ra','re','ri','ro','ta','te','ti','to','tu','po','pa','pe','pi','pu','fa','fe','fi','fo','ga','go','gi','gu','ya','yo','yu','bo','ba','be','bi','bu','cha','cho','chi','chu','sha','sho','shi','shu','co','ca','ce','ci','cu','do','da','de','di','du','el','en','ar','is','or','us','an','in','on','eu','é','lae','rae','lyr','my','ny','ae','ia','eo'
+      ];
+      const cat = ['mi','min','ny','nya','roux','rou','cha','cha','tou','tou','plu','plume','shi','mou','pel','pel','gra','gris','nois','sette'];
+      const dog = ['rex','max','kai','kao','bao','brun','dog','wolf','ran','bark','nix','fox','zo','zor','zor','bal','kan','leo'];
+      const bird = ['pi','pio','twi','twi','rio','rio','ari','ari','lark','azur','ciel','plu','plu','aer','avel'];
+      const rabbit = ['lap','pin','nois','ette','coco','neige','flop','eared','pom','pon','nini'];
+      const horse = ['gal','lop','ael','ael','mane','crin','siro','safir','lune','sole','vento'];
+      const reptile = ['sli','ther','sco','co','yra','yr','ona','gex','gla','dru'];
+      const rodent = ['nois','ette','miot','mimi','pix','pip','tika','nux'];
+      const fish = ['na','ri','mo','ma','mar','bril','azur','coral','nemo','bub'];
+      const other = ['zeph','lyr','neo','or','el','aer','myr','quill'];
+
+      let speciesPool = base;
+      switch(species){
+        case 'chat': speciesPool = base.concat(cat); break;
+        case 'chien': speciesPool = base.concat(dog); break;
+        case 'oiseau': speciesPool = base.concat(bird); break;
+        case 'lapin': speciesPool = base.concat(rabbit); break;
+        case 'cheval': speciesPool = base.concat(horse); break;
+        case 'reptile': speciesPool = base.concat(reptile); break;
+        case 'rongeur': speciesPool = base.concat(rodent); break;
+        case 'poisson': speciesPool = base.concat(fish); break;
+        default: speciesPool = base.concat(other); break;
+      }
+
+      if(styles.includes('mythologique')) speciesPool = speciesPool.concat(['aen','aeon','thor','odin','isis','hera','zeus','posei','dion','ra','yor']);
+      if(styles.includes('nature')) speciesPool = speciesPool.concat(['flor','luz','sol','lune','neige','mousse','écor','ciel','roc','bois','vent']);
+      if(styles.includes('fantaisie')) speciesPool = speciesPool.concat(['fae','fae','lyn','wyn','ari','syl','drac','pyro','hydra','glen','vale']);
+      if(styles.includes('classique')) speciesPool = speciesPool.concat(['bella','louis','léo','lena','milo','nina','nora','nora','paul','tom','jade','lila']);
+
+      return speciesPool;
+    }
+
+    function postProcess(name, species, vibe){
+      // évite doublons de lettres et harmonise
+      name = name.replace(/([a-zéàè])\1{2,}/gi, '$1$1');
+      name = name.replace(/([aeiouy])([aeiouy])/gi, '$1');
+      // Conventions douces pour chats/chiens
+      if(species==='chat' || species==='chien'){
+        name = name.replace(/ny|nya/gi,'nya');
+      }
+      // Finitions selon vibe
+      if(vibe.includes('mignon')){
+        if(!/[ou]$/.test(name)) name += pick(['ou','u','ou','i']);
+      }
+      if(vibe.includes('court')){
+        name = name.replace(/([a-z]{1,3}).*/i,'$1');
+        if(name.length<3) name += pick(['a','i','o']);
+      }
+      return name;
+    }
+
+    function colorHintsToNames(hints){
+      const map = {
+        ambre: ['Ambre','Miel','Caramel','Cannelle','Moka'],
+        neige: ['Neige','Perle','Lumi','Ivory','Aurore'],
+        ébène: ['Ébène','Sombrelune','Onyx','Réglisse'],
+        cuivre: ['Cuivre','Roux','Châtaigne','Noisette','Flamme'],
+        saphir: ['Saphir','Azura','Bleuet','Ciel'],
+        jade: ['Jade','Verdi','Mousse','Émeraude'],
+        corail: ['Corail','Rosée','Pêche','Saumon']
+      };
+      const out = [];
+      hints.forEach(h=>{ (map[h]||[]).forEach(n=>out.push(n)); });
+      return out;
+    }
+
+    function themedNames(species, styles, colorHints, sex){
+      const bank = [];
+      if(styles.includes('classique')) bank.push(...(sex==='femelle' ? ['Luna','Bella','Lily','Nina','Jade'] : ['Milo','Léo','Oscar','Toby','Hugo']));
+      if(styles.includes('mythologique')) bank.push(...['Hermès','Gaïa','Iris','Nox','Thor','Héra','Athéna','Orion']);
+      if(styles.includes('nature')) bank.push(...['Bambou','Brise','Flocon','Rosée','Ruisseau','Brume']);
+      if(colorHints.includes('ambre')) bank.push('Canelle','Moka');
+      if(species==='oiseau') bank.push('Plume','Azur');
+      if(species==='cheval') bank.push('Tempête','Galop');
+      if(species==='poisson') bank.push('Bubble','Coral');
+      return shuffle(bank).slice(0,6);
+    }
+
+    // ——— Image color extraction (simple) ———
+    async function extractDominantColors(img){
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      const w = canvas.width = 120; // downscale for speed
+      const h = canvas.height = Math.round(img.height * (w/img.width));
+      ctx.drawImage(img, 0, 0, w, h);
+      const data = ctx.getImageData(0,0,w,h).data;
+      let r=0,g=0,b=0,count=0, sumL=0;
+      for(let i=0;i<data.length;i+=16){ // sample every 4th pixel
+        const R=data[i], G=data[i+1], B=data[i+2];
+        const a = data[i+3];
+        if(a<180) continue;
+        r+=R; g+=G; b+=B; count++;
+        sumL += 0.2126*R + 0.7152*G + 0.0722*B; // luminance
+      }
+      if(!count) return [];
+      r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count);
+      const avgL = sumL/count;
+      // Map to coarse labels
+      const hue = rgbToHue(r,g,b);
+      const colors=[];
+      if(avgL>210) colors.push('neige');
+      if(avgL<60) colors.push('ébène');
+      if(hue>=15 && hue<45) colors.push('ambre');
+      if(hue>=45 && hue<90) colors.push('jade');
+      if(hue>=190 && hue<250) colors.push('saphir');
+      if(hue>=330 || hue<15) colors.push('corail');
+      if(hue>=15 && hue<25) colors.push('cuivre');
+      return Array.from(new Set(colors));
+    }
+
+    function rgbToHue(r,g,b){
+      r/=255; g/=255; b/=255;
+      const max=Math.max(r,g,b), min=Math.min(r,g,b);
+      let h, d=max-min;
+      if(d===0) return 0;
+      switch(max){
+        case r: h=(g-b)/d + (g<b?6:0); break;
+        case g: h=(b-r)/d + 2; break;
+        case b: h=(r-g)/d + 4; break;
+      }
+      h/=6; return Math.round(h*360);
+    }
+
+    // ——— Render ———
+    function renderResults(names, form){
+      const grid = $('#grid');
+      grid.innerHTML = '';
+      names.forEach(n=>{
+        grid.appendChild(nameCard(n, form));
+      });
+      setCount(names.length);
+      renderFavs();
+      // update URL params for sharing
+      const params = new URLSearchParams();
+      params.set('species', form.species);
+      params.set('age', form.ageMonths);
+      params.set('sex', form.sex);
+      if(form.styles.length) params.set('styles', form.styles.join(','));
+      if(form.traits.length) params.set('traits', form.traits.join(','));
+      history.replaceState({}, '', `${location.pathname}?${params.toString()}`);
+    }
+
+    function nameCard(name, form){
+      const card = document.createElement('div');
+      card.className = 'card';
+      const left = document.createElement('div');
+      left.innerHTML = `<div class="name">${escapeHtml(name)}</div><div class="sub">${emojiFor(form.species)} ${escapeHtml(form.species)} • ${humanAge(form.ageMonths)} • ${escapeHtml(form.sex)}</div>`;
+      const tools = document.createElement('div');
+      tools.className = 'tools';
+      const btnCopy = iconButton('📋', 'Copier');
+      btnCopy.addEventListener('click', ()=>{ navigator.clipboard.writeText(name); toast(); });
+      const btnFav = iconButton(isFav(name)?'★':'☆', 'Favori');
+      btnFav.addEventListener('click', ()=>{ toggleFav(name); btnFav.textContent = isFav(name)?'★':'☆'; renderFavs(); });
+      const btnCard = iconButton('🖼️', 'Carte');
+      btnCard.addEventListener('click', ()=>{ downloadCard(name); });
+      tools.append(btnCopy, btnFav, btnCard);
+      card.append(left, tools);
+      return card;
+    }
+
+    function iconButton(txt, title){ const b=document.createElement('button'); b.className='iconbtn'; b.textContent=txt; b.title=title; return b; }
+
+    function emojiFor(species){
+      return {
+        chien:'🐶', chat:'🐱', oiseau:'🐦', lapin:'🐰', cheval:'🐴', reptile:'🦎', rongeur:'🐭', poisson:'🐟', autre:'✨'
+      }[species] || '🐾';
+    }
+
+    function humanAge(months){ if(months<12) return months+" mois"; const y=(months/12); return (Math.round(y*10)/10)+" ans"; }
+
+    function escapeHtml(s){ return s.replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c])); }
+
+    // ——— Favs ———
+    function isFav(n){ return state.favorites.includes(n); }
+    function toggleFav(n){ const i=state.favorites.indexOf(n); if(i>=0) state.favorites.splice(i,1); else state.favorites.push(n); persistFavs(); }
+    function persistFavs(){ localStorage.setItem('petname.favs', JSON.stringify(state.favorites)); }
+    function renderFavs(){ const cont=$('#favorites'); cont.innerHTML=''; state.favorites.forEach(n=>{ const s=document.createElement('span'); s.className='fav'; s.textContent=n; cont.appendChild(s); }); }
+    $('#exportFavs').addEventListener('click',(e)=>{ e.preventDefault(); const blob=new Blob([state.favorites.join('\n')],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='favoris-noms.txt'; a.click(); URL.revokeObjectURL(url); });
+
+    // ——— Share ———
+    $('#share').addEventListener('click',(e)=>{ e.preventDefault(); navigator.clipboard.writeText(location.href).then(()=>toast('Lien copié ✔')); });
+
+    // ——— Name card download ———
+    function downloadCard(name){
+      const canvas = document.createElement('canvas');
+      const w=900,h=500; canvas.width=w; canvas.height=h; const ctx=canvas.getContext('2d');
+      // bg
+      const grad=ctx.createLinearGradient(0,0,w,h); grad.addColorStop(0,'#0d1530'); grad.addColorStop(1,'#0b1126'); ctx.fillStyle=grad; ctx.fillRect(0,0,w,h);
+      // photo if available
+      if(state.image){
+        const img=new Image(); img.onload=()=>{ drawCard(ctx, w, h, img, name); save(); }; img.src=state.image;
+      }else{ drawCard(ctx,w,h,null,name); save(); }
+      function save(){ const a=document.createElement('a'); a.download=`${name}.png`; a.href=canvas.toDataURL('image/png'); a.click(); }
+    }
+
+    function drawCard(ctx,w,h,img,name){
+      if(img){
+        const r=180; const x= w-220, y= 140;
+        roundImage(ctx,img,x,y,r);
+      }
+      ctx.fillStyle='#fff'; ctx.font='700 72px Inter, sans-serif'; ctx.fillText(name, 60, 200);
+      ctx.font='400 22px Inter, sans-serif'; ctx.fillStyle='rgba(255,255,255,.8)'; ctx.fillText('Prénom proposé pour votre compagnon', 60, 240);
+      ctx.font='400 16px Inter, sans-serif'; ctx.fillStyle='rgba(255,255,255,.55)'; ctx.fillText('petnames.one — hors‑ligne, sans envoi d’image', 60, 280);
+    }
+
+    function roundImage(ctx,img,x,y,r){
+      ctx.save();
+      ctx.beginPath(); ctx.arc(x+r,y+r,r,0,Math.PI*2); ctx.closePath(); ctx.clip();
+      // cover
+      const size = Math.min(img.width, img.height);
+      ctx.drawImage(img, (img.width-size)/2, (img.height-size)/2, size,size, x, y, r*2, r*2);
+      ctx.restore();
+    }
+
+    // ——— Utils ———
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+    function shuffle(arr){ return arr.map(a=>[Math.random(),a]).sort((a,b)=>a[0]-b[0]).map(a=>a[1]); }
+
+    // ——— Init ———
+    document.addEventListener('DOMContentLoaded', ()=>{
+      $('#year').textContent = new Date().getFullYear();
+      renderFavs();
+      // hydrate from URL
+      const q = new URLSearchParams(location.search);
+      if(q.get('species')) $('#species').value = q.get('species');
+      if(q.get('age')){ const m=Number(q.get('age')); if(m>=12){ $('#age').value=(m/12).toFixed(1); $('#ageUnit').value='years'; } else { $('#age').value=m; $('#ageUnit').value='months'; }}
+      if(q.get('sex')) $('#sex').value = q.get('sex');
+      if(q.get('styles')) q.get('styles').split(',').forEach(s=>{ const c=$(`#styles .chip[data-style="${CSS.escape(s)}"]`); c && c.classList.add('active'); });
+      if(q.get('traits')) q.get('traits').split(',').forEach(t=>{ const c=$(`#traits .chip[data-trait="${CSS.escape(t)}"]`); c && c.classList.add('active'); });
+    });
+  </script>
+</body>
+</html>
