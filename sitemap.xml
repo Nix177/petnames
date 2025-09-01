@@ -1,0 +1,37 @@
+<!-- insérer code : sitemap.xml (petnames) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<!-- Page FR -->
+<url>
+<loc>https://nix177.github.io/petnames/fr/</loc>
+<xhtml:link rel="alternate" hreflang="fr" href="https://nix177.github.io/petnames/fr/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://nix177.github.io/petnames/en/"/>
+<xhtml:link rel="alternate" hreflang="de" href="https://nix177.github.io/petnames/de/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://nix177.github.io/petnames/es/"/>
+<xhtml:link rel="alternate" hreflang="zh" href="https://nix177.github.io/petnames/zh/"/>
+<xhtml:link rel="alternate" hreflang="hi" href="https://nix177.github.io/petnames/hi/"/>
+<xhtml:link rel="alternate" hreflang="ar" href="https://nix177.github.io/petnames/ar/"/>
+<xhtml:link rel="alternate" hreflang="bn" href="https://nix177.github.io/petnames/bn/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://nix177.github.io/petnames/en/"/>
+</url>
+
+
+<!-- Répète le bloc ci‑dessus pour EN/DE/ES/ZH/HI/AR/BN en changeant seulement <loc> -->
+<url>
+<loc>https://nix177.github.io/petnames/en/</loc>
+<xhtml:link rel="alternate" hreflang="fr" href="https://nix177.github.io/petnames/fr/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://nix177.github.io/petnames/en/"/>
+<xhtml:link rel="alternate" hreflang="de" href="https://nix177.github.io/petnames/de/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://nix177.github.io/petnames/es/"/>
+<xhtml:link rel="alternate" hreflang="zh" href="https://nix177.github.io/petnames/zh/"/>
+<xhtml:link rel="alternate" hreflang="hi" href="https://nix177.github.io/petnames/hi/"/>
+<xhtml:link rel="alternate" hreflang="ar" href="https://nix177.github.io/petnames/ar/"/>
+<xhtml:link rel="alternate" hreflang="bn" href="https://nix177.github.io/petnames/bn/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://nix177.github.io/petnames/en/"/>
+</url>
+
+
+<!-- … idem pour /de/ /es/ /zh/ /hi/ /ar/ /bn/ … -->
+</urlset>
+<!-- /insérer code -->
