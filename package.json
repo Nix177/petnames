@@ -1,0 +1,7 @@
+{
+  "name": "petnames",
+  "private": true,
+  "scripts": {
+    "sync-index": "node scripts/sync-index.js"
+  }
+}
