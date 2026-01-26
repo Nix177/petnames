@@ -1,87 +1,934 @@
-<!-- =============================================
- index.html (RACINE DU PROJET)  ex: /petnames/index.html
- Redirect détecte la langue et envoie vers /petnames/<lang>/
- Page neutre: pas d'ads, pas de CMP. noindex,follow.
-============================================== -->
-<!-- insérer code : /petnames/index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redirecting…</title>
-  <meta name="robots" content="noindex,follow" />
-  <style>html{background:#0b1020;color:#e6ecff;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif}body{margin:40px auto;max-width:680px;line-height:1.5}</style>
+  <!-- Consent Mode v2 -->
   <script>
-  // --- config ---
-  var DEFAULT_LANG = 'en'; // changeable: 'fr', 'en', etc.
-  var MAP = {
-    fr:'fr', en:'en', de:'de', es:'es', zh:'zh', hi:'hi', ar:'ar', bn:'bn',
-    'zh-cn':'zh','zh-hans':'zh','zh-hant':'zh','zh-tw':'zh','zh-hk':'zh'
-  };
-  var SUPPORTED = ['fr','en','de','es','zh','hi','ar','bn'];
-
-  function pickLang(){
-    var list=[]; try{
-      if(navigator.languages&&navigator.languages.length) list = navigator.languages;
-      else if(navigator.language) list=[navigator.language];
-    }catch(_){}
-    list = (list||[]).map(function(l){return String(l||'').toLowerCase();});
-    for(var i=0;i<list.length;i++){
-      var l=list[i]; if(MAP[l]) return MAP[l]; var base=l.split('-')[0]; if(MAP[base]) return MAP[base];
-    }
-    return DEFAULT_LANG;
-  }
-
-  function repoRoot(){
-    var parts = location.pathname.split('/').filter(Boolean); // ex: ["petnames"]
-    if(parts.length && /\.html?$/.test(parts[parts.length-1])) parts.pop();
-    if(parts.length && SUPPORTED.indexOf((parts[parts.length-1]||'').toLowerCase())>=0) parts.pop();
-    var root = '/' + parts.join('/') + '/';
-    return root.replace(/\/+/g,'/');
-  }
-
-  (function(){
-    var lang = pickLang();
-    var target = repoRoot() + lang + '/';
-    // Redirection immédiate (remplace l'historique)
-    location.replace(target);
-  })();
-  </script>
-  <noscript><meta http-equiv="refresh" content="0; url=./en/" /></noscript>
-</head>
-<body>
-  Redirecting to your language… If not redirected, <a href="./en/">click here</a>.
-</body>
-</html>
-<!-- /insérer code -->
-
-
-<!-- =============================================
- index.html (RACINE DU DOMAINE/ORG)  ex: /index.html de nix177.github.io
- Version simple: redirige vers le projet /petnames/ (puis la page ci-dessus gère la langue)
-============================================== -->
-<!-- insérer code : /index.html (domaine → projet) -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redirecting…</title>
-  <meta name="robots" content="noindex,follow" />
-  <script>
-    // Chemin du projet hébergé (avec slash final)
-    var DEST_PROJECT = '/petnames/';
-    (function(){
-      var url = DEST_PROJECT;
-      if(!/^\//.test(url)) url = '/' + url; // sécurité
-      location.replace(url);
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('consent', 'default', {
+        ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+        analytics_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted',
+        region: ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'CH'],
+        wait_for_update: 500
+      });
+      gtag('set', 'ads_data_redaction', true);
     })();
   </script>
-  <noscript><meta http-equiv="refresh" content="0; url=/petnames/" /></noscript>
+
+  <!-- AdSense global -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9411950027978678"
+    crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="metaTitle">Pet names — tailored</title>
+  <meta id="metaDesc" name="description"
+    content="A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in-browser." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2e;
+      --muted: #aab2c8;
+      --text: #e6ecff;
+      --accent: #76e0c2;
+      --accent-2: #9fb6ff;
+      --ring: rgba(118, 224, 194, .5)
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #0a0f20, #0b1226 35%, #0a0f20);
+      color: var(--text);
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif
+    }
+
+    a {
+      color: var(--accent-2)
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin-inline: auto;
+      padding: 24px
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: conic-gradient(from 140deg, #76e0c2, #9fb6ff, #76e0c2);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, .06) inset, 0 10px 30px rgba(0, 0, 0, .35)
+    }
+
+    h1 {
+      font-size: clamp(20px, 3.5vw, 28px);
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: .2px
+    }
+
+    .tag {
+      font-size: 12px;
+      color: #c6d2ff;
+      background: #0f1830;
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 4px 8px;
+      border-radius: 999px
+    }
+
+    .langpick {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .langpick select {
+      background: #0f1830;
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px
+    }
+
+    main {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 20px
+    }
+
+    @media (max-width:970px) {
+      main {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .0));
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .35)
+    }
+
+    .pad {
+      padding: 18px
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    .controls .col-span-2 {
+      grid-column: span 2
+    }
+
+    @media (max-width:620px) {
+      .controls {
+        grid-template-columns: 1fr
+      }
+
+      .controls .col-span-2 {
+        grid-column: auto
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    .row {
+      display: flex;
+      gap: 10px
+    }
+
+    select,
+    input[type="number"],
+    input[type="text"],
+    .chips,
+    .filedrop {
+      width: 100%;
+      background: #0f1830;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 12px;
+      color: var(--text);
+      padding: 12px 12px;
+      outline: none
+    }
+
+    select:focus,
+    input:focus,
+    .filedrop:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--ring)
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px
+    }
+
+    .chip {
+      background: #0d1530;
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .chip.active {
+      background: #14224a;
+      border-color: #6fb4ff
+    }
+
+    .filedrop {
+      padding: 0
+    }
+
+    .filedrop .inner {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px
+    }
+
+    .filedrop input {
+      display: none
+    }
+
+    .filedrop .thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: #0d1530;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .08);
+      overflow: hidden
+    }
+
+    .filedrop img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #93a0c5;
+      margin-top: 6px
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px
+    }
+
+    .btn {
+      background: linear-gradient(180deg, #1d2a53, #172348);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, #2a3f8f, #253772);
+      border-color: #6fb4ff
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border-color: rgba(255, 255, 255, .14)
+    }
+
+    .results {
+      padding: 18px
+    }
+
+    /* >>> 2 colonnes fixes (1 en mobile) */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px
+    }
+
+    @media (max-width:540px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .card {
+      background: #0f1830;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .2px
+    }
+
+    .sub {
+      font-size: 12px;
+      color: #9bb0e0
+    }
+
+    .card .tools {
+      display: flex;
+      gap: 8px
+    }
+
+    .iconbtn {
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: #0d1530;
+      border-radius: 10px;
+      padding: 8px;
+      cursor: pointer
+    }
+
+    .favorites {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .fav {
+      background: #0d1530;
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px
+    }
+
+    footer {
+      margin-top: 26px;
+      font-size: 12px;
+      color: #8ea0d2;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .small {
+      font-size: 12px;
+      color: #90a0c7
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111b32;
+      border: 1px solid rgba(255, 255, 255, .14);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease
+    }
+
+    .toast.show {
+      opacity: 1
+    }
+
+    .inline-help {
+      font-size: 12px;
+      color: #9cb1ff;
+      margin-top: 6px
+    }
+
+    /* SEO / Content section */
+    .seo-content {
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding-top: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .seo-content h2 {
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .seo-content p {
+      margin-bottom: 12px;
+    }
+  </style>
 </head>
+
 <body>
-  Redirecting to the app… If not redirected, <a href="/petnames/">open the app</a>.
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1 id="appTitle">Pet names — tailored</h1>
+          <div class="tag" id="appTag">Generates ideas based on species, age, and photo (optional)</div>
+        </div>
+      </div>
+
+      <div class="langpick">
+        <label for="lang" class="small" id="labelLang">Language</label>
+        <select id="lang" aria-label="Choose language">
+          <option value="fr">FR</option>
+          <option value="en" selected>EN</option>
+          <option value="de">DE</option>
+          <option value="es">ES</option>
+          <option value="zh">中文</option>
+          <option value="hi">HI</option>
+          <option value="ar">AR</option>
+          <option value="bn">BN</option>
+        </select>
+      </div>
+
+      <div style="min-width:180px;flex:0 0 180px">
+        <div style="margin-top:18px">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9411950027978678"
+            data-ad-slot="REPLACE_WITH_SLOT_HEADER" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </div>
+    </header>
+
+    <main class="panel">
+      <section class="pad" aria-label="Form">
+        <div class="controls">
+          <div>
+            <label id="labelSpecies" for="species">Species</label>
+            <select id="species" aria-label="Species">
+              <option value="chien">🐶 Dog</option>
+              <option value="chat">🐱 Cat</option>
+              <option value="oiseau">🐦 Bird</option>
+              <option value="lapin">🐰 Rabbit</option>
+              <option value="cheval">🐴 Horse</option>
+              <option value="reptile">🦎 Reptile</option>
+              <option value="rongeur">🐭 Rodent</option>
+              <option value="poisson">🐟 Fish</option>
+              <option value="autre">✨ Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label id="labelAge" for="age">Age</label>
+            <div class="row">
+              <input id="age" type="number" min="0" step="0.1" placeholder="e.g. 2" aria-label="Age" />
+              <select id="ageUnit" aria-label="Age unit">
+                <option value="years">years</option>
+                <option value="months">months</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label id="labelSex" for="sex">Sex (optional)</label>
+            <select id="sex">
+              <option value="inconnu">Unknown</option>
+              <option value="femelle">Female</option>
+              <option value="mâle">Male</option>
+            </select>
+          </div>
+
+          <div>
+            <label id="labelStyles">Name style (optional)</label>
+            <div id="styles" class="chips" role="group" aria-label="Styles">
+              <div class="chip" data-style="mignon" id="chip-style-mignon">Cute</div>
+              <div class="chip" data-style="classique" id="chip-style-classique">Classic</div>
+              <div class="chip" data-style="nature" id="chip-style-nature">Nature</div>
+              <div class="chip" data-style="mythologique" id="chip-style-mythologique">Mythologic</div>
+              <div class="chip" data-style="fantaisie" id="chip-style-fantaisie">Fantasy</div>
+              <div class="chip" data-style="court" id="chip-style-court">Short (≤2 syl.)</div>
+            </div>
+            <!-- champs custom style -->
+            <div class="row" style="margin-top:8px">
+              <input id="customStyle" type="text" placeholder="Add your own style… (press Enter)" />
+              <button class="btn" id="addStyle" type="button">＋ Add</button>
+            </div>
+            <div class="inline-help">Your custom styles appear as selectable chips.</div>
+          </div>
+
+          <div class="col-span-2">
+            <label id="labelTraits">Personality (optional)</label>
+            <div id="traits" class="chips" role="group" aria-label="Traits">
+              <div class="chip" data-trait="joueur" id="chip-trait-joueur">Playful</div>
+              <div class="chip" data-trait="calme" id="chip-trait-calme">Calm</div>
+              <div class="chip" data-trait="curieux" id="chip-trait-curieux">Curious</div>
+              <div class="chip" data-trait="brave" id="chip-trait-brave">Brave</div>
+              <div class="chip" data-trait="malin" id="chip-trait-malin">Clever</div>
+              <div class="chip" data-trait="doux" id="chip-trait-doux">Gentle</div>
+              <div class="chip" data-trait="royal" id="chip-trait-royal">Regal</div>
+              <div class="chip" data-trait="sage" id="chip-trait-sage">Wise</div>
+            </div>
+            <!-- champs custom trait -->
+            <div class="row" style="margin-top:8px">
+              <input id="customTrait" type="text" placeholder="Add your own personality term… (press Enter)" />
+              <button class="btn" id="addTrait" type="button">＋ Add</button>
+            </div>
+            <div class="inline-help">Your custom traits appear as selectable chips.</div>
+          </div>
+
+          <div class="col-span-2">
+            <label id="labelPhoto">Pet photo (optional)</label>
+            <div class="filedrop" id="filedrop">
+              <div class="inner">
+                <div class="thumb" id="thumb" aria-hidden="true">📷</div>
+                <div>
+                  <strong id="photoDrop">Drop an image here</strong> <span id="photoOr">or</span>
+                  <label for="file" id="photoClick" style="text-decoration:underline;cursor:pointer">click to
+                    choose</label>
+                  <input id="file" type="file" accept="image/*" />
+                  <div class="hint" id="photoHint">The image is not uploaded — it stays on your device. Dominant colors
+                    help refine ideas.</div>
+                  <div class="small" style="margin-top:6px">
+                    <label><input type="checkbox" id="useAiPhoto"> Analyze photo with AI (uses OpenAI)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" id="generate" type="button">Generate names</button>
+          <button class="btn ghost" id="randomize" type="button">Randomize</button>
+          <button class="btn ghost" id="clear" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section class="results" aria-live="polite">
+        <div style="margin-bottom:10px" class="small"><span id="suggestionsTitle">Suggestions</span> (<span
+            id="count">0</span>)</div>
+        <div class="grid" id="grid"></div>
+        <div style="margin-top:14px" class="small" id="favoritesTitle">Favorites</div>
+        <div class="favorites" id="favorites"></div>
+
+        <div style="margin-top:18px">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9411950027978678"
+            data-ad-slot="REPLACE_WITH_SLOT_BOTTOM" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </section>
+    </main>
+
+    <!-- SEO Content for AdSense Quality -->
+    <section class="seo-content">
+      <h2>About Pet Names Tailored</h2>
+      <p>Welcome to <strong>Pet Names Tailored</strong>, a free and intelligent tool designed to help you discover the
+        perfect name for your new companion. Raising a pet is a journey, and giving them a name is the first step.
+        Whether you have adopted a playful puppy, a calm kitten, a singing bird, or an adventurous rabbit, our generator
+        considers your pet's species, age, gender, and personality to suggest names that truly fit.</p>
+
+      <h2>How it works</h2>
+      <p>Unlike simple random generators, our algorithm blends phonetic patterns with meaning. You can select styles
+        like "Cute", "Classic", "Nature-inspired", or "Mythological". If you upload a photo, we analyze its dominant
+        colors locally on your device to suggest names like "Shadow" for a black cat or "Amber" for a golden retriever.
+        For advanced AI suggestions, you can opt-in to use OpenAI analysis.</p>
+
+      <h2>Privacy First</h2>
+      <p>We believe in privacy. Your photos and data stay on your device by default. Image analysis for color extraction
+        happens right in your browser. We do not store your personal photos on our servers.</p>
+    </section>
+
+    <footer>
+      <div id="footerLeft">© <span id="year"></span> — Tiny static app. Images stay local. <a href="#"
+          id="exportFavs">Export favorites</a></div>
+      <div><a href="#" id="share">Share this setup</a></div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Copied ✔</div>
+
+  <script>
+    // i18n bundle (abrégé)
+    const I18N = {
+      en: { dir: 'ltr', metaTitle: 'Pet names — tailored', metaDesc: 'A tiny tool suggesting names...', appTitle: 'Pet names — tailored', appTag: 'Generates ideas based on species, age, and photo (optional)', labelLang: 'Language', labelSpecies: 'Species', species: { chien: '🐶 Dog', chat: '🐱 Cat', oiseau: '🐦 Bird', lapin: '🐰 Rabbit', cheval: '🐴 Horse', reptile: '🦎 Reptile', rongeur: '🐭 Rodent', poisson: '🐟 Fish', autre: '✨ Other' }, labelAge: 'Age', agePlaceholder: 'e.g. 2', unitYears: 'years', unitMonths: 'months', labelSex: 'Sex (optional)', sex: { inconnu: 'Unknown', femelle: 'Female', 'mâle': 'Male' }, labelStyles: 'Name style (optional)', styles: { mignon: 'Cute', classique: 'Classic', nature: 'Nature', mythologique: 'Mythologic', fantaisie: 'Fantasy', court: 'Short (≤2 syl.)' }, labelTraits: 'Personality (optional)', traits: { joueur: 'Playful', calme: 'Calm', curieux: 'Curious', brave: 'Brave', malin: 'Clever', doux: 'Gentle', royal: 'Regal', sage: 'Wise' }, labelPhoto: 'Pet photo (optional)', photoDrop: 'Drop an image here', photoOr: 'or', photoClick: 'click to choose', photoHint: 'The image is not uploaded — it stays on your device.', btnGenerate: 'Generate names', btnRandomize: 'Randomize', btnClear: 'Reset', suggestionsTitle: 'Suggestions', favoritesTitle: 'Favorites', exportFavs: 'Export favorites', share: 'Share this setup', toastCopied: 'Copied ✔', toolCopy: 'Copy', toolFav: 'Favorite', toolCard: 'Card', cardSubtitle: 'Suggested name for your companion', cardFooter: 'petnames.one — offline, no image upload', ageMonths: n => `${n} months`, ageYears: y => `${y} years`, useAiPhoto: 'Analyze photo with AI (uses OpenAI)', aiConsentConfirm: "To analyze your photo with AI, the image will be sent to our server and processed by OpenAI. We don’t store your image after processing. Do you agree?" },
+      // Ajoute ici les autres langues si besoin (fr, es, de, zh, hi, ar, bn)…
+    };
+
+    const CONFIG = { apiEndpoint: null }; // ex: "https://petnames-api.vercel.app/api/generate"
+
+    const $ = s => document.querySelector(s);
+    const $$ = s => Array.from(document.querySelectorAll(s));
+    const state = { image: null, imageColors: [], favorites: JSON.parse(localStorage.getItem('petname.favs') || '[]'), lastResults: [], lastForm: null, lang: 'en', labels: I18N.en };
+
+    // hreflang/canonical auto
+    (function buildHeadLinks() {
+      const SUP = ['fr', 'en', 'de', 'es', 'zh', 'hi', 'ar', 'bn'];
+      const parts = location.pathname.split('/').filter(Boolean);
+      // CORRECTION: si on est à la racine, 'parts' est vide. 
+      // On sert du contenu EN par défaut, donc canonical = / (ou /en/ ?) 
+      // Pour éviter le Duplicate, on dit que la racine EST la version anglaise (ou x-default).
+      const last = (parts[parts.length - 1] || '').toLowerCase();
+      const lang = SUP.includes(last) ? last : 'en';
+      if (SUP.includes(last)) parts.pop();
+
+      const root = '/'; // Racine pure
+      const head = document.head;
+
+      // Canonical: si on est sur la racine, c'est la racine. Sinon /fr/, etc.
+      // MAIS documate évite les slashs. Ici, on est sur GitHub Pages (ou similaire),
+      // souvent c'est mieux avec un slash pour les dossiers.
+      // On garde le slash final pour petnames qui est structure "dossiers".
+
+      let canonicalHREF = location.origin + location.pathname;
+      if (!canonicalHREF.endsWith('/')) canonicalHREF += '/';
+
+      const lc = document.createElement('link'); lc.rel = 'canonical'; lc.href = canonicalHREF; head.appendChild(lc);
+
+      const xd = document.createElement('link'); xd.rel = 'alternate'; xd.hreflang = 'x-default'; xd.href = location.origin + '/'; head.appendChild(xd);
+      SUP.forEach(l => {
+        const a = document.createElement('link'); a.rel = 'alternate'; a.hreflang = l;
+        // Si c'est EN, on peut pointer vers la racine aussi, ou /en/ si le dossier existe.
+        // Ici on suppose que le dossier /en/ existe toujours.
+        a.href = location.origin + '/' + l + '/';
+        head.appendChild(a);
+      });
+    })();
+
+    function detectLangFromPath() {
+      const SUP = Object.keys(I18N);
+      const parts = location.pathname.split('/').filter(Boolean);
+      const last = (parts[parts.length - 1] || '').toLowerCase();
+      return SUP.includes(last) ? last : 'en';
+    }
+
+    function applyI18n(lang) {
+      state.lang = lang; state.labels = I18N[lang] || I18N.en;
+      try { localStorage.setItem('petname.lang', lang); } catch { }
+      document.documentElement.lang = lang;
+      document.documentElement.dir = state.labels.dir || (lang === 'ar' ? 'rtl' : 'ltr');
+
+      $('#metaTitle').textContent = state.labels.metaTitle; document.title = state.labels.metaTitle;
+      $('#metaDesc').setAttribute('content', state.labels.metaDesc);
+      $('#appTitle').textContent = state.labels.appTitle; $('#appTag').textContent = state.labels.appTag;
+      $('#labelLang').textContent = state.labels.labelLang;
+
+      for (const [val, text] of Object.entries(state.labels.species)) { const opt = $(`#species option[value="${CSS.escape(val)}"]`); if (opt) opt.textContent = text; }
+      $('#labelSpecies').textContent = state.labels.labelSpecies;
+      $('#labelAge').textContent = state.labels.labelAge; $('#age').setAttribute('placeholder', state.labels.agePlaceholder);
+      $('#ageUnit option[value="years"]').textContent = state.labels.unitYears; $('#ageUnit option[value="months"]').textContent = state.labels.unitMonths;
+      $('#labelSex').textContent = state.labels.labelSex; for (const [v, t] of Object.entries(state.labels.sex)) { const o = $(`#sex option[value="${CSS.escape(v)}"]`); if (o) o.textContent = t; }
+      $('#labelStyles').textContent = state.labels.labelStyles; for (const [k, t] of Object.entries(state.labels.styles)) { const el = $(`#chip-style-${k}`); if (el) el.textContent = t; }
+      $('#labelTraits').textContent = state.labels.labelTraits; for (const [k, t] of Object.entries(state.labels.traits)) { const el = $(`#chip-trait-${k}`); if (el) el.textContent = t; }
+
+      $('#labelPhoto').textContent = state.labels.labelPhoto; $('#photoDrop').textContent = state.labels.photoDrop; $('#photoOr').textContent = state.labels.photoOr; $('#photoClick').textContent = state.labels.photoClick; $('#photoHint').textContent = state.labels.photoHint;
+      const useAi = $('#useAiPhoto'); if (useAi) { const lbl = useAi.parentElement; lbl.lastChild.nodeType === 3 && (lbl.lastChild.textContent = ' ' + (state.labels.useAiPhoto || 'Analyze photo with AI (uses OpenAI)')); }
+
+      $('#generate').textContent = state.labels.btnGenerate; $('#randomize').textContent = state.labels.btnRandomize; $('#clear').textContent = state.labels.btnClear;
+      $('#suggestionsTitle').textContent = state.labels.suggestionsTitle; $('#favoritesTitle').textContent = state.labels.favoritesTitle; $('#toast').textContent = state.labels.toastCopied;
+      $('#footerLeft').innerHTML = `© <span id="year"></span> — Tiny static app. Images stay local. <a href="#" id="exportFavs">${state.labels.exportFavs || 'Export favorites'}</a>`;
+      $('#year').textContent = new Date().getFullYear();
+
+      if (state.lastResults.length && state.lastForm) renderResults(state.lastResults, state.lastForm);
+    }
+
+    const toast = msg => { const t = $('#toast'); t.textContent = msg || state.labels.toastCopied || 'Copied ✔'; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1200); };
+
+    function setupChips(sel) { const box = $(sel); box.addEventListener('click', e => { const chip = e.target.closest('.chip'); if (!chip) return; chip.classList.toggle('active'); }); }
+    setupChips('#styles'); setupChips('#traits');
+
+    function addCustomChip(inputSel, listSel, attr) {
+      const inp = $(inputSel); const list = $(listSel);
+      const val = (inp.value || '').trim(); if (!val) return;
+      const chip = document.createElement('div'); chip.className = 'chip active'; chip.dataset[attr] = val; chip.textContent = val;
+      list.appendChild(chip); inp.value = '';
+    }
+    $('#addStyle').addEventListener('click', () => addCustomChip('#customStyle', '#styles', 'style'));
+    $('#customStyle').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCustomChip('#customStyle', '#styles', 'style'); } });
+    $('#addTrait').addEventListener('click', () => addCustomChip('#customTrait', '#traits', 'trait'));
+    $('#customTrait').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCustomChip('#customTrait', '#traits', 'trait'); } });
+
+    const fileInput = $('#file'), filedrop = $('#filedrop'), thumb = $('#thumb');
+    function preview(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        state.image = reader.result;
+        const img = new Image();
+        img.onload = () => { thumb.innerHTML = ''; thumb.appendChild(img); extractDominantColors(img).then(colors => state.imageColors = colors); };
+        img.src = reader.result;
+      }; reader.readAsDataURL(file);
+    }
+    fileInput.addEventListener('change', e => preview(e.target.files?.[0]));
+    ;['dragenter', 'dragover'].forEach(ev => filedrop.addEventListener(ev, e => { e.preventDefault(); filedrop.style.borderColor = '#6fb4ff'; }));
+    ;['dragleave', 'drop'].forEach(ev => filedrop.addEventListener(ev, e => { e.preventDefault(); filedrop.style.borderColor = 'rgba(255,255,255,.08)'; }));
+    filedrop.addEventListener('drop', e => { const f = e.dataTransfer.files?.[0]; if (f && f.type.startsWith('image/')) preview(f); });
+
+    async function ensurePhotoConsent() {
+      const KEY = 'petname.photoConsent';
+      const has = localStorage.getItem(KEY);
+      if (has === 'yes') return true;
+      const msg = (I18N[state.lang]?.aiConsentConfirm) || I18N.en.aiConsentConfirm;
+      const ok = window.confirm(msg); if (ok) localStorage.setItem(KEY, 'yes');
+      return ok;
+    }
+
+    function getForm() {
+      const species = $('#species').value;
+      const ageVal = parseFloat($('#age').value || '0');
+      const ageMonths = $('#ageUnit').value === 'years' ? Math.round(ageVal * 12) : Math.round(ageVal);
+      const sex = $('#sex').value;
+      const styles = $$('#styles .chip.active').map(c => c.dataset.style);
+      const traits = $$('#traits .chip.active').map(c => c.dataset.traits); // Typo corrected: was dataset.trait in original
+      // Check original code for traits mapping... it was dataset.trait indeed. Reverting typo fix if original was correct.
+      // Wait, look at line 328: chip.dataset[attr]=val where attr is 'trait'. So dataset.trait is correct.
+      // My loop at 362 says c.dataset.trait. Ok.
+      const traitList = $$('#traits .chip.active').map(c => c.dataset.trait);
+
+      return { species, ageMonths, sex, styles, traits: traitList, colorHints: state.imageColors, hasImage: !!state.image, useAi: $('#useAiPhoto')?.checked === true };
+    }
+
+    function randomize() {
+      // Ne PAS randomizer l’espèce
+      $('#age').value = (Math.random() * 8).toFixed(1);
+      $('#ageUnit').value = Math.random() > .5 ? 'years' : 'months';
+      $('#sex').value = ['inconnu', 'femelle', 'mâle'][Math.floor(Math.random() * 3)];
+      ['#styles', '#traits'].forEach(sel => {
+        $$(sel + ' .chip').forEach(c => c.classList.remove('active'));
+        $$(sel + ' .chip').filter(() => Math.random() > .65).forEach(c => c.classList.add('active'));
+      });
+    }
+    $('#randomize').addEventListener('click', randomize);
+    $('#clear').addEventListener('click', () => { location.href = location.pathname; });
+
+    document.getElementById('generate').addEventListener('click', async () => {
+      const useAi = $('#useAiPhoto')?.checked && state.image;
+      if (useAi) { const ok = await ensurePhotoConsent(); if (!ok) $('#useAiPhoto').checked = false; }
+      const form = getForm();
+      let names = CONFIG.apiEndpoint ? await generateRemote(form) : generateLocal(form);
+      state.lastResults = names; state.lastForm = form; renderResults(names, form);
+    });
+
+    async function generateRemote(form) {
+      try {
+        const payload = { ...form };
+        if (form.useAi && state.image) { payload.imageData = await downscaleToJPEG(state.image, 768, 0.85); }
+        const res = await fetch(CONFIG.apiEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (Array.isArray(data.names)) return data.names.slice(0, 10);
+      } catch (e) { console.warn('Remote failed → local', e); }
+      return generateLocal(form);
+    }
+
+    function generateLocal({ species, ageMonths, sex, styles, traits, colorHints }) {
+      const pool = buildSyllablePool(species, styles);
+      const target = styles.includes('court') ? [1, 2] : [1, 2, 2, 3];
+      const ageTag = ageMonths <= 12 ? 'bébé' : ageMonths < 72 ? 'jeune' : 'adulte';
+      const vibe = [...styles, ...traits, ageTag, sex];
+      const colorNames = colorHintsToNames(colorHints);
+
+      const out = new Set(); let tries = 0;
+      while (out.size < 8 && tries < 200) {
+        const syl = pick(target); let name = '';
+        for (let i = 0; i < syl; i++) name += pick(pool);
+        name = postProcess(name, species, vibe);
+        if (colorNames.length && Math.random() > .7) name = blend(name, pick(colorNames));
+        name = cap(name);
+        if (/^[A-Za-zÀ-ÿ\-]{3,15}$/.test(name)) out.add(name); else tries++;
+      }
+      themedNames(species, styles, colorHints, sex).forEach(n => out.add(n));
+      return Array.from(out).slice(0, 10);
+    }
+
+    function buildSyllablePool(species, styles) {
+      const base = ['lo', 'la', 'li', 'lu', 'ly', 'no', 'na', 'ne', 'ni', 'nu', 'mi', 'ma', 'mo', 'mu', 'ka', 'ko', 'ki', 'ku', 'zo', 'za', 'ze', 'zi', 'zu', 'ru', 'ra', 're', 'ri', 'ro', 'ta', 'te', 'ti', 'to', 'tu', 'po', 'pa', 'pe', 'pi', 'pu', 'fa', 'fe', 'fi', 'fo', 'ga', 'go', 'gi', 'gu', 'ya', 'yo', 'yu', 'bo', 'ba', 'be', 'bi', 'bu', 'cha', 'cho', 'chi', 'chu', 'sha', 'sho', 'shi', 'shu', 'co', 'ca', 'ce', 'ci', 'cu', 'do', 'da', 'de', 'di', 'du', 'el', 'en', 'ar', 'is', 'or', 'us', 'an', 'in', 'on', 'eu', 'é', 'lae', 'rae', 'lyr', 'my', 'ny', 'ae', 'ia', 'eo'];
+      const speciesPools = {
+        chat: ['mi', 'min', 'ny', 'nya', 'roux', 'rou', 'cha', 'cha', 'tou', 'tou', 'plu', 'plume', 'shi', 'mou', 'pel', 'pel', 'gra', 'gris', 'nois', 'sette'],
+        chien: ['rex', 'max', 'kai', 'kao', 'bao', 'brun', 'dog', 'wolf', 'ran', 'bark', 'nix', 'fox', 'zo', 'zor', 'zor', 'bal', 'kan', 'leo'],
+        oiseau: ['pi', 'pio', 'twi', 'twi', 'rio', 'rio', 'ari', 'ari', 'lark', 'azur', 'ciel', 'plu', 'plu', 'aer', 'avel'],
+        lapin: ['lap', 'pin', 'nois', 'ette', 'coco', 'neige', 'flop', 'eared', 'pom', 'pon', 'nini'],
+        cheval: ['gal', 'lop', 'ael', 'ael', 'mane', 'crin', 'siro', 'safir', 'lune', 'sole', 'vento'],
+        reptile: ['sli', 'ther', 'sco', 'co', 'yra', 'yr', 'ona', 'gex', 'gla', 'dru'],
+        rongeur: ['nois', 'ette', 'miot', 'mimi', 'pix', 'pip', 'tika', 'nux'],
+        poisson: ['na', 'ri', 'mo', 'ma', 'mar', 'bril', 'azur', 'coral', 'nemo', 'bub'],
+        autre: ['zeph', 'lyr', 'neo', 'or', 'el', 'aer', 'myr', 'quill']
+      };
+      let all = base.concat(speciesPools[species] || speciesPools.autre);
+      if (styles.includes('mythologique')) all = all.concat(['aen', 'aeon', 'thor', 'odin', 'isis', 'hera', 'zeus', 'posei', 'dion', 'ra', 'yor']);
+      if (styles.includes('nature')) all = all.concat(['flor', 'luz', 'sol', 'lune', 'neige', 'mousse', 'écor', 'ciel', 'roc', 'bois', 'vent']);
+      if (styles.includes('fantaisie')) all = all.concat(['fae', 'fae', 'lyn', 'wyn', 'ari', 'syl', 'drac', 'pyro', 'hydra', 'glen', 'vale']);
+      if (styles.includes('classique')) all = all.concat(['bella', 'louis', 'léo', 'lena', 'milo', 'nina', 'nora', 'nora', 'paul', 'tom', 'jade', 'lila']);
+      return all;
+    }
+    function postProcess(name, species, vibe) {
+      name = name.replace(/([a-zéàè])\1{2,}/gi, '$1$1').replace(/([aeiouy])([aeiouy])/gi, '$1');
+      if (species === 'chat' || species === 'chien') name = name.replace(/ny|nya/gi, 'nya');
+      if (vibe.includes('mignon')) { if (!/[ou]$/.test(name)) name += ['ou', 'u', 'ou', 'i'][Math.floor(Math.random() * 4)]; }
+      if (vibe.includes('court')) { name = name.replace(/([a-z]{1,3}).*/i, '$1'); if (name.length < 3) name += ['a', 'i', 'o'][Math.floor(Math.random() * 3)]; }
+      return name;
+    }
+    function colorHintsToNames(hints) {
+      const map = { ambre: ['Ambre', 'Miel', 'Caramel', 'Cannelle', 'Moka'], neige: ['Neige', 'Perle', 'Lumi', 'Ivory', 'Aurore'], ébène: ['Ébène', 'Sombrelune', 'Onyx', 'Réglisse'], cuivre: ['Cuivre', 'Roux', 'Châtaigne', 'Noisette', 'Flamme'], saphir: ['Saphir', 'Azura', 'Bleuet', 'Ciel'], jade: ['Jade', 'Verdi', 'Mousse', 'Émeraude'], corail: ['Corail', 'Rosée', 'Pêche', 'Saumon'] };
+      const out = []; hints.forEach(h => (map[h] || []).forEach(n => out.push(n))); return out;
+    }
+    function themedNames(species, styles, colorHints, sex) {
+      const bank = [];
+      if (styles.includes('classique')) bank.push(...(sex === 'femelle' ? ['Luna', 'Bella', 'Lily', 'Nina', 'Jade'] : ['Milo', 'Léo', 'Oscar', 'Toby', 'Hugo']));
+      if (styles.includes('mythologique')) bank.push(...['Hermès', 'Gaïa', 'Iris', 'Nox', 'Thor', 'Héra', 'Athéna', 'Orion']);
+      if (styles.includes('nature')) bank.push(...['Bambou', 'Brise', 'Flocon', 'Rosée', 'Ruisseau', 'Brume']);
+      if (colorHints.includes('ambre')) bank.push('Cannelle', 'Moka');
+      if (species === 'oiseau') bank.push('Plume', 'Azur');
+      if (species === 'cheval') bank.push('Tempête', 'Galop');
+      if (species === 'poisson') bank.push('Bubble', 'Coral');
+      return shuffle(bank).slice(0, 2);
+    }
+    function blend(name, colorWord) {
+      return Math.random() > .5
+        ? cap(name.slice(0, Math.max(2, Math.ceil(name.length / 2)))) + '-' + colorWord
+        : colorWord + '-' + cap(name.slice(-Math.max(2, Math.ceil(name.length / 2))));
+    }
+
+    async function extractDominantColors(img) {
+      const c = document.createElement('canvas'); const ctx = c.getContext('2d', { willReadFrequently: true });
+      const w = c.width = 120, h = c.height = Math.round(img.height * (w / img.width));
+      ctx.drawImage(img, 0, 0, w, h); const data = ctx.getImageData(0, 0, w, h).data;
+      let r = 0, g = 0, b = 0, count = 0, sumL = 0;
+      for (let i = 0; i < data.length; i += 16) { const R = data[i], G = data[i + 1], B = data[i + 2], a = data[i + 3]; if (a < 180) continue; r += R; g += G; b += B; count++; sumL += 0.2126 * R + 0.7152 * G + 0.0722 * B; }
+      if (!count) return [];
+      r = Math.round(r / count); g = Math.round(g / count); b = Math.round(b / count); const L = sumL / count; const H = rgbToHue(r, g, b);
+      const colors = []; if (L > 210) colors.push('neige'); if (L < 60) colors.push('ébène');
+      if (H >= 15 && H < 45) colors.push('ambre'); if (H >= 45 && H < 90) colors.push('jade'); if (H >= 190 && H < 250) colors.push('saphir');
+      if (H >= 330 || H < 15) colors.push('corail'); if (H >= 15 && H < 25) colors.push('cuivre');
+      return Array.from(new Set(colors));
+    }
+    function rgbToHue(r, g, b) {
+      r /= 255; g /= 255; b /= 255; const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min; if (!d) return 0; let h;
+      switch (max) { case r: h = (g - b) / d + (g < b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; default: h = (r - g) / d + 4; }
+      return Math.round((h / 6) * 360);
+    }
+    const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+    const shuffle = arr => arr.map(a => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map(a => a[1]);
+    function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;" }[c])); }
+
+    function renderResults(names, form) {
+      const grid = $('#grid'); grid.innerHTML = '';
+      names.forEach(n => grid.appendChild(nameCard(n, form)));
+      $('#count').textContent = String(names.length);
+      renderFavs();
+      const p = new URLSearchParams(); p.set('species', form.species); p.set('age', form.ageMonths); p.set('sex', form.sex);
+      if (form.styles.length) p.set('styles', form.styles.join(',')); if (form.traits.length) p.set('traits', form.traits.join(','));
+      history.replaceState({}, '', `${location.pathname}?${p.toString()}`);
+    }
+    function nameCard(name, form) {
+      const card = document.createElement('div'); card.className = 'card';
+      const left = document.createElement('div');
+      left.innerHTML = `<div class="name">${escapeHtml(name)}</div><div class="sub">${emojiFor(form.species)} ${escapeHtml(displaySpecies(form.species))} • ${humanAge(form.ageMonths)} • ${escapeHtml(displaySex(form.sex))}</div>`;
+      const tools = document.createElement('div'); tools.className = 'tools';
+      const b1 = iconButton('📋', state.labels.toolCopy || 'Copy'); b1.onclick = () => { navigator.clipboard.writeText(name); toast(); };
+      const b2 = iconButton(isFav(name) ? '★' : '☆', state.labels.toolFav || 'Favorite'); b2.onclick = () => { toggleFav(name); b2.textContent = isFav(name) ? '★' : '☆'; renderFavs(); };
+      const b3 = iconButton('🖼️', state.labels.toolCard || 'Card'); b3.onclick = () => downloadCard(name);
+      tools.append(b1, b2, b3); card.append(left, tools); return card;
+    }
+    function iconButton(txt, title) { const b = document.createElement('button'); b.className = 'iconbtn'; b.textContent = txt; b.title = title; return b; }
+    function displaySpecies(val) { const map = I18N[state.lang]?.species || {}; return map[val] ? map[val].replace(/^\p{Emoji_Presentation}\s*/u, '') : val; }
+    function displaySex(val) { return (I18N[state.lang]?.sex || {})[val] || val; }
+    function emojiFor(s) { return { chien: '🐶', chat: '🐱', oiseau: '🐦', lapin: '🐰', cheval: '🐴', reptile: '🦎', rongeur: '🐭', poisson: '🐟', autre: '✨' }[s] || '🐾'; }
+    function humanAge(m) { if (m < 12) return (I18N[state.lang]?.ageMonths || ((n) => n + ' months'))(m); const y = (Math.round((m / 12) * 10) / 10); return (I18N[state.lang]?.ageYears || ((yy) => yy + ' years'))(y); }
+    function isFav(n) { return state.favorites.includes(n); }
+    function toggleFav(n) { const i = state.favorites.indexOf(n); if (i >= 0) state.favorites.splice(i, 1); else state.favorites.push(n); localStorage.setItem('petname.favs', JSON.stringify(state.favorites)); }
+    function renderFavs() { const cont = $('#favorites'); cont.innerHTML = ''; state.favorites.forEach(n => { const s = document.createElement('span'); s.className = 'fav'; s.textContent = n; cont.appendChild(s); }); }
+
+    function downloadCard(name) {
+      const canvas = document.createElement('canvas'); const w = 900, h = 500; canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d'); const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, '#0d1530'); grad.addColorStop(1, '#0b1126');
+      ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+      if (state.image) { const img = new Image(); img.onload = () => { drawCard(ctx, w, h, img, name); save(); }; img.src = state.image; } else { drawCard(ctx, w, h, null, name); save(); }
+      function save() { const a = document.createElement('a'); a.download = `${name}.png`; a.href = canvas.toDataURL('image/png'); a.click(); }
+    }
+    function drawCard(ctx, w, h, img, name) {
+      if (img) { const r = 180, x = w - 220, y = 140; ctx.save(); ctx.beginPath(); ctx.arc(x + r, y + r, r, 0, Math.PI * 2); ctx.closePath(); ctx.clip(); const s = Math.min(img.width, img.height); ctx.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, x, y, r * 2, r * 2); ctx.restore(); }
+      ctx.fillStyle = '#fff'; ctx.font = '700 72px Inter, sans-serif'; ctx.fillText(name, 60, 200);
+      ctx.font = '400 22px Inter, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.fillText((I18N[state.lang]?.cardSubtitle) || 'Suggested name for your companion', 60, 240);
+      ctx.font = '400 16px Inter, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.fillText((I18N[state.lang]?.cardFooter) || 'petnames.one — offline, no image upload', 60, 280);
+    }
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('#exportFavs'); if (a) {
+        e.preventDefault();
+        const blob = new Blob([state.favorites.join('\n')], { type: 'text/plain' }); const url = URL.createObjectURL(blob);
+        const a2 = document.createElement('a'); a2.href = url; a2.download = 'favorites.txt'; a2.click(); URL.revokeObjectURL(url);
+      }
+    });
+    $('#share')?.addEventListener('click', e => { e.preventDefault(); navigator.clipboard.writeText(location.href).then(() => toast()); });
+
+    (function langSwitcher() {
+      const SUP = Object.keys(I18N);
+      function root() { const parts = location.pathname.split('/').filter(Boolean); if (parts.length && SUP.includes((parts[parts.length - 1] || '').toLowerCase())) parts.pop(); return '/' + parts.join('/') + '/'; }
+      function url(next) { if (!SUP.includes(next)) next = 'en'; const keep = ['species', 'age', 'sex', 'styles', 'traits']; const src = new URLSearchParams(location.search); const kept = new URLSearchParams(); keep.forEach(k => { if (src.has(k)) kept.set(k, src.get(k)); }); const qs = kept.toString(); return root() + next + '/' + (qs ? ('?' + qs) : ''); }
+      document.addEventListener('DOMContentLoaded', () => { const sel = $('#lang'); if (!sel) return; sel.addEventListener('change', e => { location.href = url(String(e.target.value).toLowerCase()); }); });
+    })();
+
+    // init
+    document.addEventListener('DOMContentLoaded', () => {
+      $('#year').textContent = new Date().getFullYear();
+      renderFavs();
+      const lang = detectLangFromPath(); $('#lang').value = lang; applyI18n(lang);
+      const q = new URLSearchParams(location.search);
+      if (q.get('species')) $('#species').value = q.get('species');
+      if (q.get('age')) { const m = +q.get('age'); if (m >= 12) { $('#age').value = (m / 12).toFixed(1); $('#ageUnit').value = 'years'; } else { $('#age').value = m; $('#ageUnit').value = 'months'; } }
+      if (q.get('sex')) $('#sex').value = q.get('sex');
+      if (q.get('styles')) q.get('styles').split(',').forEach(s => { const c = $(`#styles .chip[data-style="${CSS.escape(s)}"]`); c && c.classList.add('active'); });
+      if (q.get('traits')) q.get('traits').split(',').forEach(t => { const c = $(`#traits .chip[data-trait="${CSS.escape(t)}"]`); c && c.classList.add('active'); });
+    });
+
+    async function downscaleToJPEG(dataUrl, max = 768, quality = .85) { return new Promise(res => { const img = new Image(); img.onload = () => { const r = Math.min(1, max / Math.max(img.width, img.height)); const w = Math.round(img.width * r), h = Math.round(img.height * r); const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h); res(c.toDataURL('image/jpeg', quality)); }; img.src = dataUrl; }); }
+  </script>
 </body>
+
 </html>
-<!-- /insérer code -->
