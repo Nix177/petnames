@@ -1,0 +1,10 @@
+{
+  "Metadata": { "title": "Pet names — tailored", "description": "Tiernamen Generator." },
+  "App": { "title": "Pet names — tailored", "tagline": "Maßgeschneiderte Ideen", "labelLang": "Sprache", "labelSpecies": "Spezies", 
+  "species": { "chien": "🐶 Hund", "chat": "🐱 Katze", "oiseau": "🐦 Vogel", "lapin": "🐰 Kaninchen", "cheval": "🐴 Pferd", "reptile": "🦎 Reptil", "rongeur": "🐭 Nagetier", "poisson": "🐟 Fisch", "autre": "✨ Andere" },
+  "labelAge": "Alter", "agePlaceholder": "z.B. 2", "unitYears": "Jahre", "unitMonths": "Monate",
+  "labelSex": "Geschlecht", "sex": { "inconnu": "Unbekannt", "femelle": "Weiblich", "mâle": "Männlich" },
+  "labelStyles": "Stil", "styles": { "mignon": "Süß", "classique": "Klassisch", "nature": "Natur", "mythologique": "Mythologie", "fantaisie": "Fantasie", "court": "Kurz" },
+  "labelPhoto": "Foto", "photoClick": "Klicken zum Auswählen", "photoHint": "Das Bild bleibt lokal.",
+  "btnGenerate": "Namen generieren", "btnRandomize": "Zufällig", "suggestionsTitle": "Vorschläge", "favoritesTitle": "Favoriten" }
+}

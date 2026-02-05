@@ -1,0 +1,78 @@
+{
+  "Metadata": {
+    "title": "Pet names — tailored",
+    "description": "A tiny tool suggesting names for your pet based on species, age, and an optional photo. 100% in-browser."
+  },
+  "App": {
+    "title": "Pet names — tailored",
+    "tagline": "Generates ideas based on species, age, and photo (optional)",
+    "labelLang": "Language",
+    "labelSpecies": "Species",
+    "species": {
+      "chien": "🐶 Dog",
+      "chat": "🐱 Cat",
+      "oiseau": "🐦 Bird",
+      "lapin": "🐰 Rabbit",
+      "cheval": "🐴 Horse",
+      "reptile": "🦎 Reptile",
+      "rongeur": "🐭 Rodent",
+      "poisson": "🐟 Fish",
+      "autre": "✨ Other"
+    },
+    "labelAge": "Age",
+    "agePlaceholder": "e.g. 2",
+    "unitYears": "years",
+    "unitMonths": "months",
+    "labelSex": "Sex (optional)",
+    "sex": {
+      "inconnu": "Unknown",
+      "femelle": "Female",
+      "mâle": "Male"
+    },
+    "labelStyles": "Name style (optional)",
+    "styles": {
+      "mignon": "Cute",
+      "classique": "Classic",
+      "nature": "Nature",
+      "mythologique": "Mythologic",
+      "fantaisie": "Fantasy",
+      "court": "Short (≤2 syl.)"
+    },
+    "labelTraits": "Personality (optional)",
+    "traits": {
+      "joueur": "Playful",
+      "calme": "Calm",
+      "curieux": "Curious",
+      "brave": "Brave",
+      "malin": "Clever",
+      "doux": "Gentle",
+      "royal": "Regal",
+      "sage": "Wise"
+    },
+    "labelPhoto": "Pet photo (optional)",
+    "photoDrop": "Drop an image here",
+    "photoOr": "or",
+    "photoClick": "click to choose",
+    "photoHint": "The image is not uploaded — it stays on your device.",
+    "useAiPhoto": "Analyze photo with AI (uses OpenAI)",
+    "btnGenerate": "Generate names",
+    "btnRandomize": "Randomize",
+    "btnClear": "Reset",
+    "suggestionsTitle": "Suggestions",
+    "favoritesTitle": "Favorites",
+    "exportFavs": "Export favorites",
+    "share": "Share this setup",
+    "toastCopied": "Copied ✔",
+    "toolCopy": "Copy",
+    "toolFav": "Favorite",
+    "toolCard": "Card",
+    "cardSubtitle": "Suggested name for your companion",
+    "cardFooter": "petnames.one — offline, no image upload",
+    "aiConsentConfirm": "To analyze your photo with AI, the image will be sent to our server and processed by OpenAI. We don’t store your image after processing. Do you agree?",
+    "trustTitle": "About & Privacy",
+    "trust1": "Images are processed locally.",
+    "trust2": "No data is sent to servers unless you enable AI.",
+    "seoTitle": "About Pet Names",
+    "seoText": "Our algorithm blends phonetic patterns with meaning. You can select styles like 'Cute', 'Classic', 'Nature-inspired', or 'Mythological'."
+  }
+}

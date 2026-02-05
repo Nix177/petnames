@@ -1,0 +1,10 @@
+{
+  "Metadata": { "title": "Pet names — tailored", "description": "مولد أسماء الحيوانات الاليفة" },
+  "App": { "title": "Pet names — tailored", "tagline": "أفكار مصممة خصيصًا", "labelLang": "لغة", "labelSpecies": "نوع", 
+  "species": { "chien": "🐶 كلب", "chat": "🐱 قطة", "oiseau": "🐦 طائر", "lapin": "🐰 أرنب", "cheval": "🐴 حصان", "reptile": "🦎 زواحف", "rongeur": "🐭 قوارض", "poisson": "🐟 سمك", "autre": "✨ آخر" },
+  "labelAge": "عمر", "agePlaceholder": "مثلا 2", "unitYears": "سنوات", "unitMonths": "أشهر",
+  "labelSex": "جنس", "sex": { "inconnu": "غير معروف", "femelle": "أنثى", "mâle": "ذكر" },
+  "labelStyles": "نمط", "styles": { "mignon": "لطيف", "classique": "كلاسيكي", "nature": "طبيعة", "mythologique": "أساطير", "fantaisie": "خيال", "court": "قصير" },
+  "labelPhoto": "صورة", "photoClick": "انقر للاختيار", "photoHint": "الصورة تبقى محلية.",
+  "btnGenerate": "توليد الأسماء", "btnRandomize": "عشوائي", "suggestionsTitle": "اقتراحات", "favoritesTitle": "المفضلة" }
+}

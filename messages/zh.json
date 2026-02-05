@@ -1,0 +1,10 @@
+{
+  "Metadata": { "title": "Pet names — tailored", "description": "宠物取名生成器" },
+  "App": { "title": "Pet names — tailored", "tagline": "量身定制的创意", "labelLang": "语言", "labelSpecies": "物种", 
+  "species": { "chien": "🐶 狗", "chat": "🐱 猫", "oiseau": "🐦 鸟", "lapin": "🐰 兔子", "cheval": "🐴 马", "reptile": "🦎 爬行动物", "rongeur": "🐭 啮齿动物", "poisson": "🐟 鱼", "autre": "✨ 其他" },
+  "labelAge": "年龄", "agePlaceholder": "例如 2", "unitYears": "年", "unitMonths": "月",
+  "labelSex": "性别", "sex": { "inconnu": "未知", "femelle": "雌性", "mâle": "雄性" },
+  "labelStyles": "风格", "styles": { "mignon": "可爱", "classique": "经典", "nature": "自然", "mythologique": "神话", "fantaisie": "幻想", "court": "短促" },
+  "labelPhoto": "照片", "photoClick": "点击选择", "photoHint": "图片保留在本地。",
+  "btnGenerate": "生成名字", "btnRandomize": "随机", "suggestionsTitle": "建议", "favoritesTitle": "收藏" }
+}

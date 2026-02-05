@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: LicenseRef-SA-NC-1.0
+User-agent: *
+Allow: /
+Sitemap: https://petnames.one/sitemap.xml
